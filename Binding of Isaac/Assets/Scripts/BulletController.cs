@@ -6,8 +6,7 @@ public class BulletController : MonoBehaviour
 {
     public float lifetime;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         StartCoroutine(Delay());
     }
@@ -21,6 +20,6 @@ public class BulletController : MonoBehaviour
     IEnumerator Delay()
     {
         yield return new WaitForSecondsRealtime(lifetime);
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     }
 }

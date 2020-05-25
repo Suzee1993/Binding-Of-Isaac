@@ -11,13 +11,13 @@ public class ShootManager : MonoBehaviour
     private float lastFire;
     public float fireDelay;
 
-    // Start is called before the first frame update
+    private string stringName = "Bullet";
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         var shootHor = Input.GetAxis("ShootHor");
@@ -32,7 +32,9 @@ public class ShootManager : MonoBehaviour
 
     void Shoot(float x, float y)
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        GameObject bullet = PoolManager.Instance.SpawnFromPool(stringName);
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = transform.rotation;
 
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
             (x < 0) ? Mathf.Floor(x) * speed : Mathf.Ceil(x) * speed,
