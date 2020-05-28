@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public float lifetime;
+    public float damage;
 
     private void OnEnable()
     {
@@ -15,6 +16,16 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            var enemy = other.GetComponent<Enemy>();
+            enemy.TakeDamage(damage);
+            gameObject.SetActive(false);
+        }
     }
 
     IEnumerator Delay()
