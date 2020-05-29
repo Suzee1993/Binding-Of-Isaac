@@ -6,16 +6,19 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    public float health;
 
     private Rigidbody2D rb;
 
     public Text collectedText;
 
     public static int collectedAmount = 0;
+    private Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        //anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -27,5 +30,15 @@ public class PlayerController : MonoBehaviour
 
         collectedText.text = "Items Collected: " + collectedAmount;
         
+    }
+
+    public void TakeDamage(float damage)
+    {
+        //anim.SetTrigger("TakeDamage");
+        health -= damage;
+        if (health <= 0)
+        {
+            //TODO: Death function
+        }
     }
 }

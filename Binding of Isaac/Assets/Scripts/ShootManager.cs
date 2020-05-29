@@ -46,6 +46,5 @@ public class ShootManager : MonoBehaviour
             (y < 0) ? Mathf.Floor(y) * speed : Mathf.Ceil(y) * speed,
             0
         );
-
     }
 }

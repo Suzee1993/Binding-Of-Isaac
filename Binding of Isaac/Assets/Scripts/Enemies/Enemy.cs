@@ -15,46 +15,33 @@ public enum EnemyState
     Die
 };
 
-public enum AttackType
-{
-    Shooter,
-    Dasher,
-    Bumper
-};
-
-public enum DeathType
-{
-    Exploder,
-    NonExploder
-};
-
 public class Enemy : MonoBehaviour
 {
-    GameObject player;
+    public GameObject player;
 
     public EnemyState currentState = EnemyState.Wander;
-    public AttackType attackType;
-    public DeathType deathType;
 
     public float speed;
     public float range;
+    public float damage;
     public float attackRange;
     public float explosionRange;
     public float health;
     public string itemPrefab;
+    public int chanceRate;
 
-    private bool chooseDir = false;
-    private Vector3 randomDir;
+    protected bool chooseDir = false;
+    protected Vector3 randomDir;
     //private bool dead = false;
     private Animator anim;
 
-    void Start()
+    protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         //anim = GetComponent<Animator>();
     }
 
-    void Update()
+    protected void Update()
     {
         switch (currentState)
         {
@@ -98,16 +85,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private bool IsPlayerInRange(float range)
+    protected bool IsPlayerInRange(float range)
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
-    }    
-    private bool IsPlayerInAttackRange(float attackRange)
+    }
+    protected bool IsPlayerInAttackRange(float attackRange)
     {
         return Vector3.Distance(transform.position, player.transform.position) <= attackRange;
     }
 
-    public void Wander()
+    protected virtual void Wander()
     {
         if (!chooseDir)
         {
@@ -119,37 +106,19 @@ public class Enemy : MonoBehaviour
             currentState = EnemyState.Follow;
         }
     }
-    public void Follow()
+    protected virtual void Follow()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed*Time.deltaTime);
     }
-    public void Attack()
+    protected virtual void Attack()
     {
-        if(attackType == AttackType.Dasher)
-        {
-            //TODO: Write Attack Pattern
-        }
-        else if(attackType == AttackType.Shooter)
-        {
-            //TODO: Write Attack Pattern
-        }
-        else if(attackType == AttackType.Bumper)
-        {
-            currentState = EnemyState.Follow;
-        }
+        //Differs per enemy
+        currentState = EnemyState.Follow;
     }
-    public void Die()
+    protected virtual void Die()
     {
-        if (deathType == DeathType.Exploder)
-        {
-            StartCoroutine(Explode());
-        }
-        else if (deathType ==  DeathType.NonExploder)
-        {
-            //anim.SetTrigger("DeathCycle");
-            DropItem();
-        }
-
+        //anim.SetTrigger("DeathCycle");
+        DropItem();
         gameObject.SetActive(false);
     }
 
@@ -163,52 +132,37 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public GameObject DropItem()
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            var pScript = player.GetComponent<PlayerController>();
+            pScript.TakeDamage(damage);
+        }
+    }
+
+    protected virtual GameObject DropItem()
     {
         int chance;
+        chance = Random.Range(0, 100);
+        Debug.Log(chance);
 
-        if (deathType == DeathType.Exploder && attackType == AttackType.Shooter || deathType == DeathType.NonExploder && attackType == AttackType.Shooter)
+        if (chance <= chanceRate)
         {
-            //Droprate health item (for Shooter/Exploder) or damage item (for Shooter) 25%
-            chance = Random.Range(0, 100);
-            if(chance <= 25)
-            {
-                GameObject item = PoolManager.Instance.SpawnFromPool(itemPrefab);
-                item.transform.position = transform.position;
-                item.transform.rotation = transform.rotation;
-                return item;
-            }
-            else
-            {
-                return null;
-            }
-        }
-        else if (deathType == DeathType.NonExploder && attackType == AttackType.Dasher || deathType == DeathType.NonExploder && attackType == AttackType.Bumper)
-        {
-            //Droprate speed item (for Dasher) or attack speed item (for bumper) 40%
-            chance = Random.Range(0, 100);
-            Debug.Log(chance);
-            if (chance <= 40)
-            {
-                Debug.Log("Item Dropped");
-                GameObject item = PoolManager.Instance.SpawnFromPool(itemPrefab);
-                item.transform.position = transform.position;
-                item.transform.rotation = transform.rotation;
-                return item;
-            }
-            else
-            {
-                Debug.Log("No Item Dropped");
-                return null;
-            }
+            Debug.Log("Item Dropped");
+            GameObject item = PoolManager.Instance.SpawnFromPool(itemPrefab);
+            item.transform.position = transform.position;
+            item.transform.rotation = transform.rotation;
+            return item;
         }
         else
         {
+            Debug.Log("No Item Dropped");
             return null;
         }
     }
 
-    private IEnumerator ChooseDirection()
+    protected virtual IEnumerator ChooseDirection()
     {
         chooseDir = true; 
         yield return new WaitForSeconds(Random.Range(2f, 5f));
@@ -216,12 +170,5 @@ public class Enemy : MonoBehaviour
         Quaternion nextRotation = Quaternion.Euler(randomDir);
         transform.localRotation = Quaternion.Lerp(transform.rotation, nextRotation, Random.Range(0.5f, 2.5f));
         chooseDir = false;
-    }
-
-    private IEnumerator Explode()
-    {
-        //TODO: Exploding sequence
-        DropItem();
-        yield return new WaitForSeconds(1f);
     }
 }
