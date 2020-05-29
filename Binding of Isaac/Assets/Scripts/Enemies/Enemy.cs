@@ -17,16 +17,17 @@ public enum EnemyState
 
 public class Enemy : MonoBehaviour
 {
+    [Header ("Don't Touch")]
     public GameObject player;
 
+    [Header("General")]
     public EnemyState currentState = EnemyState.Wander;
-
     public float speed;
     public float range;
     public float damage;
     public float attackRange;
-    public float explosionRange;
     public float health;
+    public List<string> itemNames = new List<string>();
     public string itemPrefab;
     public int chanceRate;
 
@@ -110,9 +111,9 @@ public class Enemy : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed*Time.deltaTime);
     }
+    //Differs per enemy
     protected virtual void Attack()
     {
-        //Differs per enemy
         currentState = EnemyState.Follow;
     }
     protected virtual void Die()
@@ -143,6 +144,9 @@ public class Enemy : MonoBehaviour
 
     protected virtual GameObject DropItem()
     {
+        var randItem = Random.Range(0, itemNames.Count);
+        itemPrefab = itemNames[randItem];
+
         int chance;
         chance = Random.Range(0, 100);
         Debug.Log(chance);

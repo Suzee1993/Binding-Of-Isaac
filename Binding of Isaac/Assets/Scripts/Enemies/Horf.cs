@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Horf : Enemy
 {
+    [Header("Horf Specific")]
     public string bulletName;
     public float bulletSpeed;
     public GameObject shootPoint;
@@ -17,7 +18,6 @@ public class Horf : Enemy
     {
         //base.Wander();
     }
-
     protected override void Attack()
     {
         if(Time.time > lastFire + fireDelay)

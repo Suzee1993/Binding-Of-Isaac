@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Charger : Enemy
 {
+    [Header("Charger Specific")]
     public float chargeSpeed = 5;
+    public bool canDash = true;
 
     private Vector2 direction;
-
     private float dashTime = 0f;
-    public bool canDash = true;
 
     //Move randomly at the start
     protected override void Start()
@@ -21,7 +21,6 @@ public class Charger : Enemy
         Quaternion rot = Quaternion.Euler(randomDir);
         transform.localRotation = Quaternion.Lerp(transform.rotation, rot, 1);
     }
-
     protected override void Attack()
     {
         //base.Attack();
@@ -43,7 +42,6 @@ public class Charger : Enemy
             StartCoroutine(DashReset());
         }
     }
-
     IEnumerator DashReset()
     {
         currentState = EnemyState.Wander;

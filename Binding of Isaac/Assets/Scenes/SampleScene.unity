@@ -366,7 +366,18 @@ MonoBehaviour:
   - tag: EnemyBullet
     prefab: {fileID: 3445819813908008423, guid: 7e4a7643800aacd46aa4325c87b8213e,
       type: 3}
-    poolSize: 10
+    poolSize: 20
+  - tag: HealthItem
+    prefab: {fileID: 855955137036105582, guid: 7cfeba6e1b0bb3c49a45fec43c553806, type: 3}
+    poolSize: 5
+  - tag: HealthItem2
+    prefab: {fileID: 8981839517841776285, guid: df1400d1c35e87e478e42c4fecee0616,
+      type: 3}
+    poolSize: 5
+  - tag: HealthItem3
+    prefab: {fileID: 5173513747862768734, guid: c706c00e2c13bdb4db703c38c640e22d,
+      type: 3}
+    poolSize: 5
 --- !u!4 &551345443
 Transform:
   m_ObjectHideFlags: 0
@@ -775,7 +786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1366823231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,8 +805,8 @@ MonoBehaviour:
   range: 1.5
   damage: 0
   attackRange: 2
-  explosionRange: 0
   health: 2
+  itemNames: []
   itemPrefab: SpeedItem
   chanceRate: 25
   chargeSpeed: 2
@@ -879,7 +890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1458755109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,10 +907,10 @@ MonoBehaviour:
   currentState: 0
   speed: 0
   range: 0
-  damage: 0
+  damage: 1
   attackRange: 2
-  explosionRange: 0
   health: 2
+  itemNames: []
   itemPrefab: AttackSpeedItem
   chanceRate: 30
   bulletName: EnemyBullet
@@ -1049,14 +1060,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   currentState: 0
-  speed: 0.5
+  speed: 1
   range: 2
-  damage: 0
+  damage: 1
   attackRange: 0
-  explosionRange: 0
   health: 2
-  itemPrefab: HealthItem
+  itemNames:
+  - HealthItem
+  - HealthItem2
+  - HealthItem3
+  itemPrefab: 
   chanceRate: 40
+  bulletName: EnemyBullet
+  bulletSpeed: 5
+  radius: 2.5
 --- !u!61 &1915711390
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1067,7 +1084,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
