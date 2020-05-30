@@ -12,9 +12,9 @@ public class Charger : Enemy
     private float dashTime = 0f;
 
     //Move randomly at the start
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
 
         var dir = Random.Range(0, 360);
         randomDir = new Vector3(0, 0, dir);

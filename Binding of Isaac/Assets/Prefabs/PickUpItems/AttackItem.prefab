@@ -119,6 +119,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4658977275942250731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9dde00f01ffd7948825e940fe5cb816, type: 3}
+  m_Script: {fileID: 11500000, guid: 4eeb5870f2b699c4b8cb4b96dd155c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 5
+  state: 1
+  secondaryState: 0
+  damageStat: 1.25
+  speedStat: 0
+  attackSpeedStat: 0
+  healthStat: 0

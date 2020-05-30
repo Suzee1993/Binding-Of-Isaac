@@ -7,16 +7,12 @@ public class ShootManager : MonoBehaviour
 
     public GameObject bulletPrefab;
     public float speed;
+    public float damage;
 
     private float lastFire;
     public float fireDelay;
 
     private string stringName = "Bullet";
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -32,7 +28,10 @@ public class ShootManager : MonoBehaviour
 
     void Shoot(float x, float y)
     {
+        Debug.Log(damage);
+
         GameObject bullet = PoolManager.Instance.SpawnFromPool(stringName);
+        bullet.GetComponent<BulletController>().damage = damage;
         bullet.transform.position = transform.position;
         bullet.transform.rotation = transform.rotation;
 

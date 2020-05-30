@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
 {
     [Header ("Don't Touch")]
     public GameObject player;
+    public string itemPrefab;
 
     [Header("General")]
     public EnemyState currentState = EnemyState.Wander;
@@ -28,7 +29,6 @@ public class Enemy : MonoBehaviour
     public float attackRange;
     public float health;
     public List<string> itemNames = new List<string>();
-    public string itemPrefab;
     public int chanceRate;
 
     protected bool chooseDir = false;
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     //private bool dead = false;
     private Animator anim;
 
-    protected virtual void Start()
+    protected virtual void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         //anim = GetComponent<Animator>();

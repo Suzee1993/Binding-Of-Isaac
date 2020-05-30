@@ -132,7 +132,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5472861982936202728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,8 +145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75fd3f59dbf2864dba753e24fe204d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 2.2
+  health: 3
+  maxHealth: 0
   collectedText: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 4
+  damage: 1
+  fireDelay: 0.2
 --- !u!114 &5472861982936202729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +160,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5472861982936202707}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7946bae27c37eb479033ff84d5640d3, type: 3}
   m_Name: 
@@ -162,4 +168,5 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1261914225515716900, guid: 423a7134c1ab88543b51f4720a4bda71,
     type: 3}
   speed: 4
+  damage: 1
   fireDelay: 0.2

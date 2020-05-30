@@ -17,9 +17,9 @@ public class RedBoomFly : Enemy
     int numberOfBullets = 6;
 
     //Only moves diagonally
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
 
         var dir = Random.Range(0, directions.Length);
         var direc = directions[dir];
