@@ -6,30 +6,32 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("General")]
     public float speed;
     public float health;
     public float maxHealth;
-    
-    public int damageItem = 1;
-    public int speedItem = 2;
-    public int attackSpeedItem = 3;
-    public int healthItem = 4;
-
-    private Rigidbody2D rb;
-
-    public Text collectedText;
-
-    public static int collectedAmount = 0;
-    private Animator anim;
-
-
-    public GameObject bulletPrefab;
     public float bulletSpeed;
     public float damage;
+    public static int collectedAmount = 0;
 
+    [Header("UI")]
+    public Text collectedText;
+    public Text healthText;
+    public Text attackSpeedText;
+    public Text speedText;
+    public Text damageText;
+
+    [Header("Fire Delay Timer")]
     private float lastFire;
     public float fireDelay;
 
+    private int damageItem = 1;
+    private int speedItem = 2;
+    private int attackSpeedItem = 3;
+    private int healthItem = 4;
+
+    private Animator anim;
+    private Rigidbody2D rb;
     private string stringName = "Bullet";
 
     void Start()
@@ -48,6 +50,22 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);
 
         collectedText.text = "Items Collected: " + collectedAmount;
+        healthText.text = "Health: " + health;
+        if(fireDelay > 0.2f)
+        {
+            attackSpeedText.text = "Attack Speed: Slow";
+        }
+        else if (fireDelay < 0.2f)
+        {
+            attackSpeedText.text = "Attack Speed: Fast";
+        }
+        else
+        {
+            attackSpeedText.text = "Attack Speed: Medium";
+        }
+        speedText.text = "Speed: " + Mathf.Round(speed * 100) / 100f;
+        damageText.text = "Damage: " + Mathf.Round(damage * 100) / 100f;
+        
 
         //Shooting
         var shootHor = Input.GetAxis("ShootHor");
