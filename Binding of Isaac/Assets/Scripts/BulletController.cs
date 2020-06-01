@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -17,10 +18,21 @@ public class BulletController : MonoBehaviour
     {
         if (other.CompareTag(target))
         {
-            var enemy = other.GetComponent<Enemy>();
-            enemy.TakeDamage(damage);
-            gameObject.SetActive(false);
-        }
+            if(target == "Player")
+            {
+                var player = other.GetComponent<PlayerController>();
+                //player.TakeDamage(damage);
+                GameController.TakeDamage(damage);
+                gameObject.SetActive(false);
+            }
+            else if (target == "Enemy")
+            {
+                var enemy = other.GetComponent<Enemy>();
+                enemy.TakeDamage(damage);
+                gameObject.SetActive(false);
+            }
+        }        
+
         //else if(other.CompareTag("Environment") || other.CompareTag("Collectable"))
         //{
            // this.gameObject.SetActive(false);

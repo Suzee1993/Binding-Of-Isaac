@@ -124,7 +124,10 @@ MonoBehaviour:
   time: 5
   stateOne: 1
   stateTwo: 2
+  itemType: 1
   damageStat: 0.5
   speedStat: 3
   attackSpeedStat: 0
   healthStat: 0
+  name: Speed Pill
+  description: Increase Speed by 3, decrease Damage by 50%

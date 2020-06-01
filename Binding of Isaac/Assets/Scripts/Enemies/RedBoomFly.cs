@@ -43,10 +43,9 @@ public class RedBoomFly : Enemy
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            currentState = EnemyState.Die;
-        }
+        base.OnTriggerEnter2D(collision);
+
+        currentState = EnemyState.Die;
     }
 
     protected override void Die()

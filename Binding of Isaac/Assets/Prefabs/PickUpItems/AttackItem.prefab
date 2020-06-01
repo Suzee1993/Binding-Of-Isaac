@@ -123,9 +123,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 5
-  state: 1
-  secondaryState: 0
+  stateOne: 0
+  stateTwo: 0
+  itemType: 3
   damageStat: 1.25
   speedStat: 0
   attackSpeedStat: 0
   healthStat: 0
+  name: Attack Pill
+  description: Increase Damage by 1

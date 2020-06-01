@@ -122,9 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 5
-  state: 2
-  secondaryState: 3
+  stateOne: 0
+  stateTwo: 0
+  itemType: 2
   damageStat: 0
   speedStat: 0.4
   attackSpeedStat: 0.4
   healthStat: 0
+  name: Attack Speed Pill
+  description: Increase Attack Speed by 60%, decrease Speed by 60%

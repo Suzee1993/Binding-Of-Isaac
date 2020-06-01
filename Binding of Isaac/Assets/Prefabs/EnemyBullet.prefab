@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8286602134664250737}
   - component: {fileID: -8099561265861878216}
   - component: {fileID: 4489660515176626808}
+  - component: {fileID: 8971868183604635303}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: Untagged
@@ -120,3 +121,19 @@ MonoBehaviour:
   lifetime: 0.5
   damage: 1
   target: Player
+--- !u!58 &8971868183604635303
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445819813908008423}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.085

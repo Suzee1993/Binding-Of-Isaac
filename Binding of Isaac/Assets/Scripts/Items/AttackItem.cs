@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class AttackItem : Item
 {
-    float playerDamage;
+    //float playerDamage;
 
-    protected override void ExecuteItem(PlayerController player)
-    {
-        playerDamage = player.damage;
-        player.damage *= damageStat;
+    //protected override void ExecuteItem(PlayerController player)
+    //{
+    //    playerDamage = player.damage;
+    //    player.damage *= damageStat;
         
-        player.StartTimer(playerDamage, time, stateOne);
+    //    player.StartTimer(playerDamage, time, stateOne);
 
-        PlayerController.collectedAmount += 1;
+    //    PlayerController.collectedAmount += 1;
 
-        //Turn off item
-        base.ExecuteItem(player);
-    }
+    //    //Turn off item
+    //    base.ExecuteItem(player);
+    //}
 }

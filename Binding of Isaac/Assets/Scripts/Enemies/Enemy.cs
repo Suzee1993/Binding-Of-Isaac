@@ -36,6 +36,9 @@ public class Enemy : MonoBehaviour
     //private bool dead = false;
     private Animator anim;
 
+    private bool coolDownAttack = false;
+    public float coolDownTime;
+
     protected virtual void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -135,10 +138,14 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (!coolDownAttack && collision.CompareTag("Player"))
         {
             var pScript = player.GetComponent<PlayerController>();
-            pScript.TakeDamage(damage);
+            //pScript.TakeDamage(damage);
+
+            GameController.TakeDamage(damage);
+
+            StartCoroutine(CoolDown());
         }
     }
 
@@ -156,7 +163,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Item Dropped");
             GameObject item = PoolManager.Instance.SpawnFromPool(itemPrefab);
             item.transform.position = transform.position;
-            item.transform.rotation = transform.rotation;
+            item.transform.rotation = Quaternion.identity;
             return item;
         }
         else
@@ -174,5 +181,12 @@ public class Enemy : MonoBehaviour
         Quaternion nextRotation = Quaternion.Euler(randomDir);
         transform.localRotation = Quaternion.Lerp(transform.rotation, nextRotation, Random.Range(0.5f, 2.5f));
         chooseDir = false;
+    }
+
+    protected virtual IEnumerator CoolDown()
+    {
+        coolDownAttack = true;
+        yield return new WaitForSeconds(coolDownTime);
+        coolDownAttack = false;
     }
 }

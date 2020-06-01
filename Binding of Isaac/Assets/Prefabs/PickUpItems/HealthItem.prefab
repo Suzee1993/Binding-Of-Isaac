@@ -123,9 +123,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
-  state: 4
-  secondaryState: 0
+  stateOne: 0
+  stateTwo: 0
+  itemType: 0
   damageStat: 0
   speedStat: 0
   attackSpeedStat: 0
   healthStat: 1
+  name: Health Item
+  description: Increase Health by 1

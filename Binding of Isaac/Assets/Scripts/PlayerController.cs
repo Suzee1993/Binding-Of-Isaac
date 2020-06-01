@@ -8,15 +8,12 @@ public class PlayerController : MonoBehaviour
 {
     [Header("General")]
     public float speed;
-    public float health;
-    public float maxHealth;
     public float bulletSpeed;
     public float damage;
     public static int collectedAmount = 0;
 
     [Header("UI")]
     public Text collectedText;
-    public Text healthText;
     public Text attackSpeedText;
     public Text speedText;
     public Text damageText;
@@ -25,10 +22,10 @@ public class PlayerController : MonoBehaviour
     private float lastFire;
     public float fireDelay;
 
-    private int damageItem = 1;
-    private int speedItem = 2;
-    private int attackSpeedItem = 3;
-    private int healthItem = 4;
+    //private int damageItem = 1;
+    //private int speedItem = 2;
+    //private int attackSpeedItem = 3;
+    //private int healthItem = 4;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -38,11 +35,14 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         //anim = GetComponent<Animator>();
-        maxHealth = health;
     }
 
     void Update()
     {
+        damage = GameController.Damage;
+        fireDelay = GameController.FireDelay;
+        speed = GameController.Speed;
+
         //Movement
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);
 
         collectedText.text = "Items Collected: " + collectedAmount;
-        healthText.text = "Health: " + health;
         if(fireDelay > 0.2f)
         {
             attackSpeedText.text = "Attack Speed: Slow";
@@ -78,15 +77,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
-    {
-        //anim.SetTrigger("TakeDamage");
-        health -= damage;
-        if (health <= 0)
-        {
-            //TODO: Death function
-        }
-    }
+    //public void TakeDamage(float damage)
+    //{
+    //    //anim.SetTrigger("TakeDamage");
+    //    health -= damage;
+    //    if (health <= 0)
+    //    {
+    //        //TODO: Death function
+    //    }
+    //}
 
     void Shoot(float x, float y)
     {
@@ -109,31 +108,30 @@ public class PlayerController : MonoBehaviour
         );
     }
 
-
     #region Timer
-    public void StartTimer(float prevPlayerStat, float time, int state)
-    {
-        StartCoroutine(Timer(prevPlayerStat, time, state));
-    }
+    //public void StartTimer(float prevPlayerStat, float time, int state)
+    //{
+    //    StartCoroutine(Timer(prevPlayerStat, time, state));
+    //}
 
-    IEnumerator Timer(float prevPlayerStat, float time, int stateOne)
-    {
-        Debug.Log("Timer Start");
-        yield return new WaitForSeconds(time);
+    //IEnumerator Timer(float prevPlayerStat, float time, int stateOne)
+    //{
+    //    Debug.Log("Timer Start");
+    //    yield return new WaitForSeconds(time);
 
-        if (stateOne == damageItem) //1
-        {
-            damage = prevPlayerStat;
-        }
-        if (stateOne == speedItem) //2
-        {
-            speed = prevPlayerStat;
-        }
-        if (stateOne == attackSpeedItem) //3
-        {
-            fireDelay = prevPlayerStat;
-        }
-        Debug.Log("Timer End");
-    }
+    //    if (stateOne == damageItem) //1
+    //    {
+    //        damage = prevPlayerStat;
+    //    }
+    //    if (stateOne == speedItem) //2
+    //    {
+    //        speed = prevPlayerStat;
+    //    }
+    //    if (stateOne == attackSpeedItem) //3
+    //    {
+    //        fireDelay = prevPlayerStat;
+    //    }
+    //    Debug.Log("Timer End");
+    //}
     #endregion
 }
