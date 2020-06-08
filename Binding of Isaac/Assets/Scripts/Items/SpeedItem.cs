@@ -7,7 +7,7 @@ public class SpeedItem : Item
     float playerSpeed;
     float playerDamage;
 
-    protected override void ExecuteItem()//PlayerController player)
+    protected override void ExecuteItem()// PlayerController player)
     {
         //playerSpeed = player.speed;
         //playerDamage = player.damage;
