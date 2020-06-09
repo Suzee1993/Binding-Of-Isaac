@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class GameController : MonoBehaviour
     private static float playerSpeed;
     private static float playerMoveSpeed;
     private static float playerAttackSpeed;
+
+
     private void Awake()
     {
         if (instance == null)

@@ -132,3 +132,4 @@ MonoBehaviour:
   healthStat: 1
   name: Health Item
   description: Increase Health by 1
+  sprite: {fileID: -282399551362747047, guid: fecb3f1ed1b08e445a4337750fdca341, type: 3}

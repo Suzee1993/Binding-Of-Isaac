@@ -131,3 +131,4 @@ MonoBehaviour:
   healthStat: 0
   name: Attack Speed Pill
   description: Increase Attack Speed by 60%, decrease Speed by 60%
+  sprite: {fileID: 603922194841907963, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}

@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         //anim = GetComponent<Animator>();
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         switch (currentState)
         {
@@ -89,11 +89,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected bool IsPlayerInRange(float range)
+    protected virtual bool IsPlayerInRange(float range)
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
     }
-    protected bool IsPlayerInAttackRange(float attackRange)
+    protected virtual bool IsPlayerInAttackRange(float attackRange)
     {
         return Vector3.Distance(transform.position, player.transform.position) <= attackRange;
     }

@@ -132,3 +132,4 @@ MonoBehaviour:
   healthStat: 0
   name: Attack Pill
   description: Increase Damage by 1
+  sprite: {fileID: -3670487015809721425, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}

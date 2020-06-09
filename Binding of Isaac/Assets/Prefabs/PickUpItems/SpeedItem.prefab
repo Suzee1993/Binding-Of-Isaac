@@ -131,3 +131,4 @@ MonoBehaviour:
   healthStat: 0
   name: Speed Pill
   description: Increase Speed by 3, decrease Damage by 50%
+  sprite: {fileID: 290803801354314165, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}
