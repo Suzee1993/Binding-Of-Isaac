@@ -12,6 +12,7 @@ public class Item : MonoBehaviour
 
     public enum ItemTypes
     {
+        Null,
         Health,
         Speed,
         AttackSpeed,
@@ -33,9 +34,9 @@ public class Item : MonoBehaviour
     public string description;
     public Sprite sprite;
 
-    private Inventory inventory;
+    protected Inventory inventory;
 
-    private void Start()
+    protected virtual void Start()
     {
         inventory = FindObjectOfType<Inventory>();
     }
@@ -53,29 +54,33 @@ public class Item : MonoBehaviour
     {        
         gameObject.SetActive(false);
 
-        inventory.AddToInventory(sprite, title, description);
+        inventory.AddToInventory(sprite, title, description, itemType, damageStat, speedStat, attackSpeedStat, healthStat);
 
     }
 
-    protected virtual void ExecuteItem()//PlayerController player)
-    {
-        if(itemType == ItemTypes.Health)
-        {
-            GameController.Heal(healthStat);
-        }
-        else if (itemType == ItemTypes.Speed)
-        {
-            GameController.SpeedUp(speedStat, damageStat, time, itemType);
-        }
-        else if (itemType == ItemTypes.AttackSpeed)
-        {
-            GameController.AttackSpeedUp(attackSpeedStat, speedStat, time, itemType);
-        }
-        else if (itemType == ItemTypes.Damage)
-        {
-            GameController.DamageUp(damageStat,time, itemType);
-        }
+    //protected virtual void ExecuteItem()//PlayerController player)
+    //{
+    //    if(itemType == ItemTypes.Health)
+    //    {
+    //        GameController.Heal(healthStat);
+    //        inventory.RevomeFromInventory();
+    //    }
+    //    else if (itemType == ItemTypes.Speed)
+    //    {
+    //        GameController.SpeedUp(speedStat, damageStat, time, itemType); 
+    //        inventory.RevomeFromInventory();
+    //    }
+    //    else if (itemType == ItemTypes.AttackSpeed)
+    //    {
+    //        GameController.AttackSpeedUp(attackSpeedStat, speedStat, time, itemType);
+    //        inventory.RevomeFromInventory();
+    //    }
+    //    else if (itemType == ItemTypes.Damage)
+    //    {
+    //        GameController.DamageUp(damageStat,time, itemType);
+    //        inventory.RevomeFromInventory();
+    //    }
 
-        gameObject.SetActive(false);
-    }
+    //    gameObject.SetActive(false);
+    //}
 }

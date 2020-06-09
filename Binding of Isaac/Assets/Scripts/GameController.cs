@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public static void SpeedUp(float speedAmount, float damageAmount, float time, Item.ItemTypes itemType)
+    public static void SpeedUp(float speedAmount, float damageAmount, Item.ItemTypes itemType) //, float time
     {
         playerMoveSpeed = Speed;
         playerDamage = Damage;
@@ -75,12 +75,15 @@ public class GameController : MonoBehaviour
         Speed += speedAmount;
         Damage *= damageAmount;
 
+        Debug.Log(Speed);
+        Debug.Log(Damage);
+
         //StartCoroutine(Timer(playerMoveSpeed, playerDamage, time, itemType));
 
         PlayerController.collectedAmount += 1;
     }
 
-    public static void AttackSpeedUp(float attackSpeedAmount, float speedAmount, float time, Item.ItemTypes itemtype)
+    public static void AttackSpeedUp(float attackSpeedAmount, float speedAmount,  Item.ItemTypes itemtype) //float time,
     {
         playerAttackSpeed = FireDelay; //adjust down to fire faster
         playerMoveSpeed = Speed; //adjust down to move slower
@@ -93,7 +96,7 @@ public class GameController : MonoBehaviour
         PlayerController.collectedAmount += 1;
     }
 
-    public static void DamageUp(float damageAmount, float time, Item.ItemTypes itemType)
+    public static void DamageUp(float damageAmount, Item.ItemTypes itemType) //float time,
     {
         playerDamage = Damage;
         Damage *= damageAmount;
