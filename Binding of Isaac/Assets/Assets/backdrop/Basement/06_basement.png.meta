@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 3e3c9237d0bce834e942ebfa16703d5d
+guid: 586ab06200dcdd24c8074d5d7c202684
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4286300797087770627
-    second: 0a_library_0
-  - first:
-      213: -3371452983791841767
-    second: 0a_library_0
+      213: -6070704899866008499
+    second: 06_basement_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,22 +102,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 0a_library_0
+      name: 06_basement_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 520
-        height: 520
+        y: 364
+        width: 234
+        height: 156
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 364, z: 286, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91e082cbf513631d0800000000000000
-      internalID: -3371452983791841767
+      spriteID: d44634bbe0680cba0800000000000000
+      internalID: -6070704899866008499
       vertices: []
       indices: 
       edges: []
