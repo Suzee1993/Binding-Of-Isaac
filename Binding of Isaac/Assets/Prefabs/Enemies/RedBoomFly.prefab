@@ -82,6 +82,7 @@ MonoBehaviour:
   itemNames:
   - HealthItem
   chanceRate: 40
+  coolDownTime: 0
   bulletName: EnemyBullet
   bulletSpeed: 5
   radius: 2.5
@@ -153,8 +154,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 711804005
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -8071971704844046669, guid: 2824e574fa761b144b558f3ca36b5695,
     type: 3}

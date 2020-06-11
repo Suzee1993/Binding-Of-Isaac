@@ -52,3 +52,15 @@ TagManager:
   - name: Player
     uniqueID: 826611389
     locked: 0
+  - name: Bullet
+    uniqueID: 79936073
+    locked: 0
+  - name: Item
+    uniqueID: 2128148225
+    locked: 0
+  - name: Enemy
+    uniqueID: 711804005
+    locked: 0
+  - name: Wall
+    uniqueID: 2512837915
+    locked: 0

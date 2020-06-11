@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2128148225
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 603922194841907963, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -129,6 +129,6 @@ MonoBehaviour:
   speedStat: 0.4
   attackSpeedStat: 0.4
   healthStat: 0
-  name: Attack Speed Pill
+  title: 
   description: Increase Attack Speed by 60%, decrease Speed by 60%
   sprite: {fileID: 603922194841907963, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}

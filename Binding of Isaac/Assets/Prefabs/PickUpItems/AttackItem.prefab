@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2128148225
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -3670487015809721425, guid: fcebfb8a470841c48833fb4b25f15b72,
     type: 3}
@@ -130,6 +130,6 @@ MonoBehaviour:
   speedStat: 0
   attackSpeedStat: 0
   healthStat: 0
-  name: Attack Pill
+  title: 
   description: Increase Damage by 1
   sprite: {fileID: -3670487015809721425, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}
