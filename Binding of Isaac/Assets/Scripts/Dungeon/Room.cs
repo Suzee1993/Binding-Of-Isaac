@@ -6,8 +6,14 @@ public class Room : MonoBehaviour
 {
     public float width;
     public float height;
-    public int x;
-    public int y;
+    public int xVal;
+    public int yVal;
+
+    public Room(int x, int y)
+    {
+        xVal = x;
+        yVal = y;
+    }
 
     public Door leftDoor;
     public Door rightDoor;
@@ -16,7 +22,8 @@ public class Room : MonoBehaviour
 
     public List<Door> doors = new List<Door>();
 
-    // Start is called before the first frame update
+    private bool updatedDoors = false;
+
     void Start()
     {
         if(RoomController.Instance == null)
@@ -52,6 +59,15 @@ public class Room : MonoBehaviour
         }
 
         RoomController.Instance.RegisterRoom(this);
+    }
+
+    private void Update()
+    {
+        if(name.Contains("End") && !updatedDoors)
+        {
+            RemoveUnconnectedDoors();
+            updatedDoors = true;
+        }
     }
 
     public void RemoveUnconnectedDoors()
@@ -93,9 +109,9 @@ public class Room : MonoBehaviour
 
     public Room GetLeft()
     {
-        if( RoomController.Instance.DoesRoomExist(x - 1, y))
+        if( RoomController.Instance.DoesRoomExist(xVal - 1, yVal))
         {
-            return RoomController.Instance.FindRoom(x - 1, y);
+            return RoomController.Instance.FindRoom(xVal - 1, yVal);
         }
         else
         {
@@ -105,9 +121,9 @@ public class Room : MonoBehaviour
     
     public Room GetRight()
     {
-        if (RoomController.Instance.DoesRoomExist(x + 1, y))
+        if (RoomController.Instance.DoesRoomExist(xVal + 1, yVal))
         {
-            return RoomController.Instance.FindRoom(x + 1, y);
+            return RoomController.Instance.FindRoom(xVal + 1, yVal);
         }
         else
         {
@@ -117,9 +133,9 @@ public class Room : MonoBehaviour
     
     public Room GetUp()
     {
-        if (RoomController.Instance.DoesRoomExist(x, y + 1))
+        if (RoomController.Instance.DoesRoomExist(xVal, yVal + 1))
         {
-            return RoomController.Instance.FindRoom(x, y + 1);
+            return RoomController.Instance.FindRoom(xVal, yVal + 1);
         }
         else
         {
@@ -129,9 +145,9 @@ public class Room : MonoBehaviour
     
     public Room GetDown()
     {
-        if (RoomController.Instance.DoesRoomExist(x, y - 1))
+        if (RoomController.Instance.DoesRoomExist(xVal, yVal - 1))
         {
-            return RoomController.Instance.FindRoom(x, y - 1);
+            return RoomController.Instance.FindRoom(xVal, yVal - 1);
         }
         else
         {
@@ -147,7 +163,7 @@ public class Room : MonoBehaviour
 
     public Vector3 GetRoomCenter()
     {
-        return new Vector3(x * width, y * height);
+        return new Vector3(xVal * width, yVal * height);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

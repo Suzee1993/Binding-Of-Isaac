@@ -12,6 +12,21 @@ EditorBuildSettings:
     path: Assets/Scenes/DungeonRooms/BasementEmpty.unity
     guid: 1b32c6b42e96544458df3bba70b83840
   - enabled: 1
+    path: Assets/Scenes/DungeonRooms/BasementEmpty2.unity
+    guid: c44bb1679b4486641a4db54a66db33db
+  - enabled: 1
+    path: Assets/Scenes/DungeonRooms/BasementEmpty3.unity
+    guid: fe379ea7874cb7d4ba9352ff08248453
+  - enabled: 1
+    path: Assets/Scenes/DungeonRooms/BasementBoomFly.unity
+    guid: db19d211f2ed6974b85ec17196d047de
+  - enabled: 1
+    path: Assets/Scenes/DungeonRooms/BasementCharger.unity
+    guid: a2589ec72f1695f44a175044e5a3c663
+  - enabled: 1
+    path: Assets/Scenes/DungeonRooms/BasementHorf.unity
+    guid: 0208d067fde62ff4685dc6d0a8c2f067
+  - enabled: 1
     path: Assets/Scenes/DungeonRooms/BasementEnd.unity
     guid: 02cffd9a6206a924d82b792d5b4e6392
   m_configObjects: {}

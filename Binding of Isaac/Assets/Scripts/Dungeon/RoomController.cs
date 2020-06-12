@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,8 @@ public class RoomController : MonoBehaviour
     public List<Room> loadedRooms = new List<Room>();
 
     bool isLoadingRoom = false;
+    bool spawnedBossRoom = false;
+    bool updatedRoom;
 
     Room currentRoom;
 
@@ -54,6 +57,19 @@ public class RoomController : MonoBehaviour
 
         if(loadRoomQueue.Count == 0)
         {
+            if (!spawnedBossRoom)
+            {
+                StartCoroutine(SpawnBossRoom());
+            }
+            else if (spawnedBossRoom && !updatedRoom)
+            {
+                foreach ( Room room in loadedRooms)
+                {
+                    room.RemoveUnconnectedDoors();
+                }
+                updatedRoom = true;
+            }
+
             return;
         }
 
@@ -84,9 +100,9 @@ public class RoomController : MonoBehaviour
         {
             room.transform.position = new Vector3(currentLoadRoomData.xVal * room.width, currentLoadRoomData.yVal * room.height, 0);
 
-            room.x = currentLoadRoomData.xVal;
-            room.y = currentLoadRoomData.yVal;
-            room.name = currentWorldName + "-" + currentLoadRoomData.name + " " + room.x + "," + room.y;
+            room.xVal = currentLoadRoomData.xVal;
+            room.yVal = currentLoadRoomData.yVal;
+            room.name = currentWorldName + "-" + currentLoadRoomData.name + " " + room.xVal + "," + room.yVal;
             room.transform.parent = transform;
 
             isLoadingRoom = false;
@@ -97,7 +113,7 @@ public class RoomController : MonoBehaviour
             }
 
             loadedRooms.Add(room);
-            room.RemoveUnconnectedDoors();
+            //room.RemoveUnconnectedDoors();
         }
         else
         {
@@ -108,7 +124,7 @@ public class RoomController : MonoBehaviour
 
     public bool DoesRoomExist(int x, int y)
     {
-        return loadedRooms.Find(item => item.x == x && item.y == y) != null;
+        return loadedRooms.Find(item => item.xVal == x && item.yVal == y) != null;
     }
 
     public void OnPlayerEnterRoom(Room room)
@@ -119,7 +135,7 @@ public class RoomController : MonoBehaviour
 
     public Room FindRoom(int x, int y)
     {
-        return loadedRooms.Find(item => item.x == x && item.y == y);
+        return loadedRooms.Find(item => item.xVal == x && item.yVal == y);
     }
 
     IEnumerator LoadRoomRoutine(RoomInfo info)
@@ -136,6 +152,29 @@ public class RoomController : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnBossRoom()
+    {
+        spawnedBossRoom = true;
 
+        yield return new WaitForSeconds(0.5f);
+
+        if(loadRoomQueue.Count == 0)
+        {
+            Room bossRoom = loadedRooms[loadedRooms.Count - 1];
+            Room tempRoom = new Room(bossRoom.xVal, bossRoom.yVal);
+
+            Destroy(bossRoom.gameObject);
+
+            var roomToRemove = loadedRooms.Single(r => r.xVal == tempRoom.xVal && r.yVal == tempRoom.yVal);
+
+            if (!roomToRemove.name.Contains("Empty"))
+            {
+                roomToRemove.GetComponent<Spawner>().bossRoom = true;
+            }
+
+            loadedRooms.Remove(roomToRemove);
+            LoadRoom("End", tempRoom.xVal, tempRoom.yVal);
+        }
+    }
 
 }
