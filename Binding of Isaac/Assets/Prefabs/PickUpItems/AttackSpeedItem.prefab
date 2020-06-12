@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3798064074143496510
 Transform:
   m_ObjectHideFlags: 0
@@ -122,13 +122,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 5
-  stateOne: 0
-  stateTwo: 0
-  itemType: 2
+  stateOne: 2
+  stateTwo: 3
+  itemType: 3
   damageStat: 0
   speedStat: 0.4
   attackSpeedStat: 0.4
   healthStat: 0
-  title: 
-  description: Increase Attack Speed by 60%, decrease Speed by 60%
+  title: Attack Speed Pill
+  description: Increase Attack Speed by 60%, decrease speed by 60%
   sprite: {fileID: 603922194841907963, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}

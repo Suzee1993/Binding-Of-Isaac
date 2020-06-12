@@ -22,6 +22,8 @@ public class Room : MonoBehaviour
 
     public List<Door> doors = new List<Door>();
 
+    public bool playerInRoom;
+
     private bool updatedDoors = false;
 
     void Start()
@@ -79,28 +81,28 @@ public class Room : MonoBehaviour
                 case Door.DoorType.left:
                     if(GetLeft() == null)
                     {
-                        door.gameObject.SetActive(false);
+                        DisableSpriteRenderers(door);
                     }
                     break;
 
                 case Door.DoorType.right:
                     if (GetRight() == null)
                     {
-                        door.gameObject.SetActive(false);
+                        DisableSpriteRenderers(door);
                     }
                     break;
 
                 case Door.DoorType.up:
                     if (GetUp() == null)
                     {
-                        door.gameObject.SetActive(false);
+                        DisableSpriteRenderers(door);
                     }
                     break;
 
                 case Door.DoorType.down:
                     if (GetDown() == null)
                     {
-                        door.gameObject.SetActive(false);
+                        DisableSpriteRenderers(door);
                     }
                     break;
             }
@@ -171,6 +173,25 @@ public class Room : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             RoomController.Instance.OnPlayerEnterRoom(this);
+            //playerInRoom = true;
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        playerInRoom = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        playerInRoom = false;
+    }
+
+    void DisableSpriteRenderers(Door door)
+    {
+        door.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        var doorchild = door.gameObject.transform.GetChild(0);
+        doorchild.GetComponent<SpriteRenderer>().enabled = false;
+        door.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
     }
 }

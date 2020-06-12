@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4658977275942250728
 Transform:
   m_ObjectHideFlags: 0
@@ -123,13 +123,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 5
-  stateOne: 0
+  stateOne: 1
   stateTwo: 0
-  itemType: 3
+  itemType: 4
   damageStat: 1.25
   speedStat: 0
   attackSpeedStat: 0
   healthStat: 0
-  title: 
-  description: Increase Damage by 1
+  title: Attack Pill
+  description: Multiply damage by 25%
   sprite: {fileID: -3670487015809721425, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}

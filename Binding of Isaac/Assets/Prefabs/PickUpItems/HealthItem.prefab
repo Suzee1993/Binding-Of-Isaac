@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &855955137036105581
 Transform:
   m_ObjectHideFlags: 0
@@ -125,11 +125,11 @@ MonoBehaviour:
   time: 0
   stateOne: 0
   stateTwo: 0
-  itemType: 0
+  itemType: 1
   damageStat: 0
   speedStat: 0
   attackSpeedStat: 0
   healthStat: 1
-  title: 
-  description: Increase Health by 1
+  title: Health Item
+  description: Increase health +1
   sprite: {fileID: -282399551362747047, guid: fecb3f1ed1b08e445a4337750fdca341, type: 3}

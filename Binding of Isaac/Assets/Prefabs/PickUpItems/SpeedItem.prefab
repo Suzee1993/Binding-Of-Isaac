@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6070442966857690599
 Transform:
   m_ObjectHideFlags: 0
@@ -122,13 +122,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 5
-  stateOne: 1
-  stateTwo: 2
-  itemType: 1
+  stateOne: 2
+  stateTwo: 1
+  itemType: 2
   damageStat: 0.5
   speedStat: 3
   attackSpeedStat: 0
   healthStat: 0
-  title: 
-  description: Increase Speed by 3, decrease Damage by 50%
+  title: Speed Pill
+  description: Increase speed by 3 when health is below 50%, decrease damage bij
+    50%
   sprite: {fileID: 290803801354314165, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}

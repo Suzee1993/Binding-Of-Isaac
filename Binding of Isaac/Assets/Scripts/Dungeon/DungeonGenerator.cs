@@ -32,7 +32,7 @@ public class DungeonGenerator : MonoBehaviour
             //{
             //}
             #endregion
-            RoomController.Instance.LoadRoom(SelectRoom(), roomLocation.x, roomLocation.y);
+            RoomController.Instance.LoadRoom(SelectRoom(), roomLocation.x, roomLocation.y); // "Empty"
 
         }
     }

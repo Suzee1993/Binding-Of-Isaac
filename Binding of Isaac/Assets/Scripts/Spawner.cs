@@ -13,12 +13,12 @@ public class Spawner : MonoBehaviour
 
     public bool bossRoom = false;
 
+    public int enemyCounter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Wait());
-
-
     }
 
     IEnumerator Wait()
@@ -36,6 +36,8 @@ public class Spawner : MonoBehaviour
                 Transform pos = spawnPoints[index];
 
                 enemy.transform.position = pos.position;
+
+                enemyCounter++;
 
                 spawnPoints.Remove(pos);
             }
