@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectable
   - Enemy
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -49,9 +50,6 @@ TagManager:
   - name: BackGround
     uniqueID: 1960342467
     locked: 0
-  - name: Player
-    uniqueID: 826611389
-    locked: 0
   - name: Bullet
     uniqueID: 79936073
     locked: 0
@@ -63,4 +61,10 @@ TagManager:
     locked: 0
   - name: Wall
     uniqueID: 2512837915
+    locked: 0
+  - name: Fire
+    uniqueID: 3698827573
+    locked: 0
+  - name: Player
+    uniqueID: 826611389
     locked: 0

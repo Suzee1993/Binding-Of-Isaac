@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
     public bool bossRoom = false;
 
     public int enemyCounter = 0;
+    public bool enemiesInRoom = true;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class Spawner : MonoBehaviour
                 enemy.transform.position = pos.position;
 
                 enemyCounter++;
+                GameController.instance.enemyKillCounter++;
 
                 spawnPoints.Remove(pos);
             }

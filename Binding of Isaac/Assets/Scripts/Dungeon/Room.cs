@@ -20,11 +20,17 @@ public class Room : MonoBehaviour
     public Door upDoor;
     public Door downDoor;
 
+    public bool enemyRoom;
+
     public List<Door> doors = new List<Door>();
 
-    public bool playerInRoom;
+    public bool playerInRoom = false;
+    public bool locked = false;
+    public bool firstEntry = false;
 
     private bool updatedDoors = false;
+    private Spawner spawner;
+    public int GCKillCounter;
 
     void Start()
     {
@@ -61,6 +67,13 @@ public class Room : MonoBehaviour
         }
 
         RoomController.Instance.RegisterRoom(this);
+
+        if (enemyRoom)
+        {
+            spawner = GetComponent<Spawner>();
+
+        }
+
     }
 
     private void Update()
@@ -70,6 +83,61 @@ public class Room : MonoBehaviour
             RemoveUnconnectedDoors();
             updatedDoors = true;
         }
+
+        if (enemyRoom)
+        {
+            GCKillCounter = GameController.instance.enemyKillCounter;
+            if (playerInRoom && (GameController.instance.enemyKillCounter != GCKillCounter + spawner.enemyCounter))
+            {
+                foreach (Door door in doors)
+                {
+                    door.CloseDoors();
+                }
+            }
+            else
+            {
+                foreach (Door door in doors)
+                {
+                    door.OpenDoors();
+                }
+            }
+        }
+        else
+        {
+            foreach (Door door in doors)
+            {
+                door.OpenDoors();
+            }
+        }
+
+
+        //if(enemyRoom && playerInRoom && !locked && firstEntry)
+        //{
+        //    locked = true;
+
+        //    foreach (Door door in doors)
+        //    {
+        //        GMKillCounter = GameController.instance.enemyKillCounter;
+        //        door.CloseDoors();
+        //    }
+        //}
+
+        //if(enemyRoom && (GMKillCounter + spawner.enemyCounter) == GameController.instance.enemyKillCounter)
+        //{
+        //    foreach (Door door in doors)
+        //    {
+        //        spawner.enemiesInRoom = false;
+        //        door.OpenDoors();
+        //    }
+        //}
+
+        //if (!firstEntry)
+        //{
+        //    foreach (Door door in doors)
+        //    {
+        //        door.OpenDoors();
+        //    }
+        //}
     }
 
     public void RemoveUnconnectedDoors()
@@ -174,17 +242,32 @@ public class Room : MonoBehaviour
         {
             RoomController.Instance.OnPlayerEnterRoom(this);
             //playerInRoom = true;
+
+
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        playerInRoom = true;
+        if (collision.CompareTag("Player"))
+        {
+            StartCoroutine(Wait());
+            //playerInRoom = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        playerInRoom = false;
+        if (collision.CompareTag("Player"))
+        {
+            if (!firstEntry)
+            {
+                firstEntry = true;
+            }
+
+            playerInRoom = false;
+            locked = false;
+        }
     }
 
     void DisableSpriteRenderers(Door door)
@@ -193,5 +276,11 @@ public class Room : MonoBehaviour
         var doorchild = door.gameObject.transform.GetChild(0);
         doorchild.GetComponent<SpriteRenderer>().enabled = false;
         door.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(.6f);
+        playerInRoom = true;
     }
 }

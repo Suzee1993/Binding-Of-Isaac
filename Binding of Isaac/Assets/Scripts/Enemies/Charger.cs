@@ -36,7 +36,6 @@ public class Charger : Enemy
     private MovementState movementState = MovementState.NULL;
     bool checkMove = true;
 
-
     //Move randomly at the start
     protected override void OnEnable()
     {
@@ -47,6 +46,8 @@ public class Charger : Enemy
         Quaternion rot = Quaternion.Euler(randomDir);
         transform.localRotation = Quaternion.Lerp(transform.rotation, rot, 1);
         rb = GetComponent<Rigidbody2D>();
+
+        spawner = FindObjectOfType<Spawner>();
     }
 
     protected override void Update()
@@ -56,6 +57,16 @@ public class Charger : Enemy
         if(currentState == EnemyState.Follow)
         {
             currentState = EnemyState.Wander;
+        }
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+
+        if (collision.CompareTag("Environment"))
+        {
+            StartCoroutine(ChooseDirection());
         }
     }
 

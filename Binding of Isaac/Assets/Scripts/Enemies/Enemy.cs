@@ -36,8 +36,10 @@ public class Enemy : MonoBehaviour
     //private bool dead = false;
     private Animator anim;
 
-    private bool coolDownAttack = false;
+    public bool coolDownAttack = false;
     public float coolDownTime;
+
+    protected Spawner spawner;
 
     protected virtual void OnEnable()
     {
@@ -122,6 +124,9 @@ public class Enemy : MonoBehaviour
     protected virtual void Die()
     {
         //anim.SetTrigger("DeathCycle");
+        //spawner.enemyCounter--;
+        GameController.instance.enemyKillCounter--;
+
         DropItem();
         gameObject.SetActive(false);
     }

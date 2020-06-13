@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
 {
-
     public DungeonGenerationData dungeonGenerationData;
     private List<Vector2Int> dungeonRooms;
 
-    public List<string> roomNames = new List<string>();
-    
+    [System.Serializable]
+    public struct Selectable
+    {
+        public string roomName;
+        public float weight;
+    }
+
+    public List<Selectable> roomNames = new List<Selectable>();
+
+    private float totalWeight;
+
+    private void Awake()
+    {
+        totalWeight = 0;
+
+        foreach (var selectable in roomNames)
+        {
+            totalWeight += selectable.weight;
+        }
+    }
 
     private void Start()
     {
@@ -39,12 +56,27 @@ public class DungeonGenerator : MonoBehaviour
 
     private string SelectRoom()
     {
-        string selectedRoomName;
-        int index;
+        float pick = Random.value * totalWeight;
+        int index = 0;
+        float cumulativeWeight = roomNames[0].weight;
 
-        index = Random.Range(0, roomNames.Count);
-        selectedRoomName = roomNames[index];
+        while (pick > cumulativeWeight && index < dungeonGenerationData.iterationMin)
+        {
+            index++;
+            cumulativeWeight += roomNames[index].weight;
+        }
+
+        string selectedRoomName = roomNames[index].roomName;
 
         return selectedRoomName;
+
+
+        //string selectedRoomName;
+        //int index;
+
+        //index = Random.Range(0, roomNames.Count);
+        //selectedRoomName = roomNames[index];
+
+        //return selectedRoomName;
     }
 }

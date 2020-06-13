@@ -46,6 +46,8 @@ public class RoomController : MonoBehaviour
     private void Update()
     {
         UpdateRoomQueue();
+
+
     }
 
     void UpdateRoomQueue()

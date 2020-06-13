@@ -13,6 +13,13 @@ public class Horf : Enemy
     private float lastFire;
     public float fireDelay;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        spawner = FindObjectOfType<Spawner>();
+    }
+
     //Doesn't move at all
     protected override void Wander()
     {

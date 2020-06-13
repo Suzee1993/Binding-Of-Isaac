@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour
     private static float playerMoveSpeed;
     private static float playerAttackSpeed;
 
+    public int enemyKillCounter = 0;
+
 
     private void Awake()
     {

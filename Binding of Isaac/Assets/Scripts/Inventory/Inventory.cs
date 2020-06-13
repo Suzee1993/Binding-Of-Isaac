@@ -7,12 +7,19 @@ using UnityEngine.XR.WSA.Input;
 
 public class Inventory : MonoBehaviour
 {
+    [Header("List")]
     public List<GameObject> InventorySlots = new List<GameObject>();
     private List<GameObject> InvSlots;
+    [Header("Array")]
+    public bool[] isFull;
+    public GameObject[] inventorySlots;
 
+    [Header("Else")]
     public GameObject inventoryPanel;
     public bool inventoryActive = false;
     //Queue<GameObject> slots = new Queue<GameObject>();
+
+    public bool inventoryFull = false;
 
     private void Start()
     {
@@ -21,13 +28,20 @@ public class Inventory : MonoBehaviour
 
     public void AddToInventory(Sprite sprite, string title, string description, Item.ItemTypes iType, float damageStat, float speedStat, float attackSpeedStat, float healthStat)
     {
-        foreach (GameObject s in InventorySlots)
+
+        for (int i = 0; i < inventorySlots.Length; i++)
         {
-            var slot = s.GetComponent<InventorySlot>();
-            if (!slot.taken)
+            if (isFull[i] == false)
             {
+                var slot = inventorySlots[i].GetComponent<InventorySlot>();
+
                 Image image = slot.spriteImage.GetComponent<Image>();
-                image.enabled = true;
+                //image.enabled = true;
+
+                Color temp = image.color;
+                temp.a = 1f;
+                image.color = temp;
+
                 image.sprite = sprite;
                 slot.titleText.text = title;
                 slot.descriptionText.text = description;
@@ -37,25 +51,31 @@ public class Inventory : MonoBehaviour
                 slot.speedStat = speedStat;
                 slot.attackSpeedStat = attackSpeedStat;
 
-                slot.taken = true;
+                isFull[i] = true;
+                break;
             }
-            if (slot.taken)
+
+            if(isFull[6] == true)
             {
-                InventorySlots.Remove(s);
+                inventoryFull = true;
             }
         }
     }
 
-    public void RevomeFromInventory(GameObject inventorySlot)
+    public void RevomeFromInventory(GameObject inventorySlot, int i)
     {
         Debug.Log(gameObject.name + "Clicked");
         var invs = inventorySlot.GetComponent<InventorySlot>();
         invs.spriteImage.GetComponent<Image>().enabled = false;
         invs.titleText.text = "Empty Slot";
         invs.descriptionText.text = "";
+        isFull[i] = false;
+
         invs.taken = false;
         
-        InventorySlots.Add(inventorySlot);
+        
+
+        //InventorySlots.Add(inventorySlot);
     }
 
     private void Update()

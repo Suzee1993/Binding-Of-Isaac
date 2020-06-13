@@ -17,6 +17,7 @@ public class InventorySlot : MonoBehaviour
     public float speedStat;
     public float damageStat;
     public float attackSpeedStat;
+    public int i;
 
 
     public Item.ItemTypes curItemType = Item.ItemTypes.Null;
@@ -26,7 +27,12 @@ public class InventorySlot : MonoBehaviour
     void Start()
     {
         inventory = FindObjectOfType<Inventory>();
-        spriteImage.enabled = false;
+        spriteImage.enabled = true;
+
+        Color temp = spriteImage.color;
+        temp.a = 0f;
+
+        spriteImage.color = temp;
     }
 
     public void ExecuteItem()//PlayerController player)
@@ -34,22 +40,22 @@ public class InventorySlot : MonoBehaviour
         if (curItemType == Item.ItemTypes.Health)
         {
             GameController.Heal(healthStat);
-            inventory.RevomeFromInventory(this.gameObject);
+            inventory.RevomeFromInventory(this.gameObject, i);
         }
         else if (curItemType == Item.ItemTypes.Speed)
         {
             GameController.SpeedUp(speedStat, damageStat, curItemType);
-            inventory.RevomeFromInventory(this.gameObject);
+            inventory.RevomeFromInventory(this.gameObject, i);
         }
         else if (curItemType == Item.ItemTypes.AttackSpeed)
         {
             GameController.AttackSpeedUp(attackSpeedStat, speedStat, curItemType);
-            inventory.RevomeFromInventory(this.gameObject);
+            inventory.RevomeFromInventory(this.gameObject, i);
         }
         else if (curItemType == Item.ItemTypes.Damage)
         {
             GameController.DamageUp(damageStat, curItemType);
-            inventory.RevomeFromInventory(this.gameObject);
+            inventory.RevomeFromInventory(this.gameObject, i);
         }
     }
 

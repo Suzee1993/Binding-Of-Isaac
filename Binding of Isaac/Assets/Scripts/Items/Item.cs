@@ -35,10 +35,13 @@ public class Item : MonoBehaviour
     public Sprite sprite;
 
     protected Inventory inventory;
+    //protected InventoryRE inventory;
 
     protected virtual void Start()
     {
         inventory = FindObjectOfType<Inventory>();
+        //inventory = FindObjectOfType<InventoryRE>();
+
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -51,12 +54,34 @@ public class Item : MonoBehaviour
         }
     }
     protected virtual void AddToInventory()
-    {        
-        gameObject.SetActive(false);
+    {
+        if (!inventory.inventoryFull)
+        {
+            gameObject.SetActive(false);
 
-        inventory.AddToInventory(sprite, title, description, itemType, damageStat, speedStat, attackSpeedStat, healthStat);
+            inventory.AddToInventory(sprite, title, description, itemType, damageStat, speedStat, attackSpeedStat, healthStat);
+        }
+        else
+        {
+            Debug.Log("Inventory full");
+        }
 
     }
+
+    //protected virtual void AddToInventory()
+    //{
+    //    for (int i = 0; i < inventory.inventorySlots.Length; i++)
+    //    {
+    //        if (inventory.isFull[i] == false)
+    //        {
+
+
+    //            inventory.isFull[i] = true;
+    //            break;
+    //        }
+    //    }
+
+    //}
 
     //protected virtual void ExecuteItem()//PlayerController player)
     //{

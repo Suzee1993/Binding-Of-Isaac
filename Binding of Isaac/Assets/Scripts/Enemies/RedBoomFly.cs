@@ -26,31 +26,46 @@ public class RedBoomFly : Enemy
         randomDir = new Vector3(0, 0, direc);
         Quaternion rot = Quaternion.Euler(randomDir);
         transform.localRotation = Quaternion.Lerp(transform.rotation, rot, 1);
+
+        spawner = FindObjectOfType<Spawner>();
     }
 
     protected override IEnumerator ChooseDirection()
     {
         chooseDir = true;
-        yield return new WaitForSeconds(Random.Range(2f, 5f));
+        yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
         var dir = Random.Range(0, directions.Length);
         var direc = directions[dir];
-        Debug.Log(direc);
+        //Debug.Log(direc);
         randomDir = new Vector3(0, 0, direc);
         Quaternion nextRotation = Quaternion.Euler(randomDir);
-        transform.localRotation = Quaternion.Lerp(transform.rotation, nextRotation, Random.Range(0.5f, 2.5f));
+        transform.localRotation = Quaternion.Lerp(transform.rotation, nextRotation, Random.Range(1f, 1.5f));
         chooseDir = false;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
+        if (!coolDownAttack && collision.CompareTag("Player"))
+        {
+            GameController.TakeDamage(damage);
 
-        currentState = EnemyState.Die;
+            currentState = EnemyState.Die;
+        }
+
+        if (collision.CompareTag("Environment"))
+        {
+            var currentPos = gameObject.transform.position;
+
+            transform.position = currentPos;
+
+            StartCoroutine(ChooseDirection());
+        }
     }
 
     protected override void Die()
     {
         StartCoroutine(Explode());
+        spawner.enemyCounter--;
         //base.Die();
     }
 
