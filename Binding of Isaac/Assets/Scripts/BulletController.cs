@@ -28,7 +28,7 @@ public class BulletController : MonoBehaviour
             else if (target == "Enemy")
             {
                 var enemy = other.GetComponent<Enemy>();
-                enemy.TakeDamage(damage);
+                enemy.Damage(damage);
                 gameObject.SetActive(false);
             }
         }        

@@ -13,11 +13,11 @@ public class Horf : Enemy
     private float lastFire;
     public float fireDelay;
 
+    public Spawner spawner;
+
     protected override void OnEnable()
     {
         base.OnEnable();
-
-        spawner = FindObjectOfType<Spawner>();
     }
 
     //Doesn't move at all
@@ -40,5 +40,11 @@ public class Horf : Enemy
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y);
             lastFire = Time.time;
         }
+    }
+
+    protected override void Die()
+    {
+        spawner.enemyCounter--;
+        base.Die();
     }
 }

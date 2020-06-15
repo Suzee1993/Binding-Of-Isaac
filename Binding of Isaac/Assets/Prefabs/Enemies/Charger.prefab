@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3841181999051271968}
   - component: {fileID: 8808959185698069830}
   - component: {fileID: 2938882140146985893}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Charger
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -87,6 +87,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
+  spawner: {fileID: 0}
 --- !u!61 &8808959185698069830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,7 +153,7 @@ GameObject:
   - component: {fileID: 3841181999168915940}
   - component: {fileID: 2194310483821060081}
   - component: {fileID: 5404664911677301756}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpriteHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

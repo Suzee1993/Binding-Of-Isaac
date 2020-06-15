@@ -14,24 +14,43 @@ public class Door : MonoBehaviour
 
     public DoorType doorType;
 
-    private Room room;
-    private Spawner spawner;
-    private BoxCollider2D doorCollider;
+    public BoxCollider2D doorCollider;
+    public SpriteRenderer sr;
+    public Sprite bossRoomDoor;
+    public Sprite bossRoomDoors;
+
+    public LayerMask enemyMask;
+    public Transform doorMaskTransform;
+    public LayerMask doorMask;
+    public GameObject doors;
+    public float radius;
+    public bool closedDoor = false;
+
+
+    private SpriteRenderer babySR;
 
     private void Start()
     {
-        doorCollider = GetComponent<BoxCollider2D>();
-
-        doorCollider.isTrigger = true;
-
+        babySR = doors.GetComponent<SpriteRenderer>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.CompareTag("Enemy"))
+        if (Physics2D.OverlapCircle(transform.position, radius, enemyMask))
         {
-            doorCollider.isTrigger = false;
+            CloseDoors();
         }
+        else if(Physics2D.OverlapCircle(doorMaskTransform.position, radius, doorMask))
+        {
+            sr.sprite = bossRoomDoor;
+            babySR.sprite = bossRoomDoors;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(doorMaskTransform.position, radius);
     }
 
     public void CloseDoors()

@@ -131,12 +131,12 @@ PrefabInstance:
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.391
+      value: -1.292
       objectReference: {fileID: 0}
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.647
+      value: -0.548
       objectReference: {fileID: 0}
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
@@ -360,7 +360,8 @@ MonoBehaviour:
   doors: []
   playerInRoom: 0
   locked: 0
-  spawner: {fileID: 266967065}
+  firstEntry: 0
+  GCKillCounter: 0
 --- !u!4 &266967063
 Transform:
   m_ObjectHideFlags: 0
@@ -434,6 +435,7 @@ MonoBehaviour:
   enemyName: RedBoomFly
   bossRoom: 0
   enemyCounter: 0
+  enemiesInRoom: 1
 --- !u!1 &411937367
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,12 +891,12 @@ PrefabInstance:
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.391
+      value: -1.305
       objectReference: {fileID: 0}
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.677
+      value: 0.591
       objectReference: {fileID: 0}
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
@@ -983,7 +985,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618558072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.046, y: 0.271, z: 0}
+  m_LocalPosition: {x: 0.762, y: 0.271, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 510494161}
@@ -1081,12 +1083,12 @@ PrefabInstance:
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.422
+      value: 1.243
       objectReference: {fileID: 0}
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.677
+      value: 0.551
       objectReference: {fileID: 0}
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
@@ -1211,7 +1213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188625406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0125, y: 0.312, z: 0}
+  m_LocalPosition: {x: -0.788, y: 0.312, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 510494161}
@@ -1402,12 +1404,12 @@ PrefabInstance:
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.422
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.647
+      value: -0.521
       objectReference: {fileID: 0}
     - target: {fileID: 3006100674637666433, guid: 6b0aa74649084564c80980d2ba16fdbe,
         type: 3}

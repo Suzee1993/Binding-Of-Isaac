@@ -16,6 +16,8 @@ public class RedBoomFly : Enemy
     Vector2 start;
     int numberOfBullets = 6;
 
+    public Spawner spawner;
+
     //Only moves diagonally
     protected override void OnEnable()
     {
@@ -26,8 +28,6 @@ public class RedBoomFly : Enemy
         randomDir = new Vector3(0, 0, direc);
         Quaternion rot = Quaternion.Euler(randomDir);
         transform.localRotation = Quaternion.Lerp(transform.rotation, rot, 1);
-
-        spawner = FindObjectOfType<Spawner>();
     }
 
     protected override IEnumerator ChooseDirection()
@@ -86,7 +86,7 @@ public class RedBoomFly : Enemy
             GameObject bullet = PoolManager.Instance.SpawnFromPool(bulletName);
             bullet.transform.position = start;
 
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletDirXPos, bulletDirYPos);
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletMoveDir.x, bulletMoveDir.y);
 
             angle += angleStep;
         }

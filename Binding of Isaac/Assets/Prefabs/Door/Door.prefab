@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &595157222406484087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5890640776915821117}
+  m_Layer: 0
+  m_Name: DoorMaskTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5890640776915821117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595157222406484087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.233, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3922267819527433159}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3922267819527433158
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +42,7 @@ GameObject:
   - component: {fileID: 3922267819527433156}
   - component: {fileID: -4180506526048956580}
   - component: {fileID: 4348120297331191698}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +61,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3824972814092144227}
+  - {fileID: 5890640776915821117}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,7 +129,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorType: 0
+  spawner: {fileID: 0}
   doorCollider: {fileID: 4348120297331191698}
+  sr: {fileID: 3922267819527433156}
+  bossRoomDoor: {fileID: -7010781582906540005, guid: b6b7774b8c0e6de45bf70f0c89fb3748,
+    type: 3}
+  bossRoomDoors: {fileID: -6592319055235439049, guid: b6b7774b8c0e6de45bf70f0c89fb3748,
+    type: 3}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  doorMaskTransform: {fileID: 5890640776915821117}
+  doorMask:
+    serializedVersion: 2
+    m_Bits: 512
+  radius: 0.2
+  closedDoor: 0
+  doors: {fileID: 5861938312831589337}
 --- !u!61 &4348120297331191698
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3824972814092144227}
   - component: {fileID: 6698375070365166199}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -36,6 +36,8 @@ public class Charger : Enemy
     private MovementState movementState = MovementState.NULL;
     bool checkMove = true;
 
+    public Spawner spawner;
+
     //Move randomly at the start
     protected override void OnEnable()
     {
@@ -46,8 +48,6 @@ public class Charger : Enemy
         Quaternion rot = Quaternion.Euler(randomDir);
         transform.localRotation = Quaternion.Lerp(transform.rotation, rot, 1);
         rb = GetComponent<Rigidbody2D>();
-
-        spawner = FindObjectOfType<Spawner>();
     }
 
     protected override void Update()
@@ -163,6 +163,12 @@ public class Charger : Enemy
             }
 
         }
+    }
+
+    protected override void Die()
+    {
+        spawner.enemyCounter--;
+        base.Die();
     }
 
     IEnumerator DashReset()

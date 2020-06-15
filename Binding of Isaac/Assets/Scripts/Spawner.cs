@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
     public string enemyName;
 
     public bool bossRoom = false;
+    public bool playerInBossRoom = false;
 
     public int enemyCounter = 0;
     public bool enemiesInRoom = true;
@@ -33,6 +34,20 @@ public class Spawner : MonoBehaviour
             {
                 GameObject enemy = PoolManager.Instance.SpawnFromPool(enemyName) as GameObject;
 
+                if(enemy.name.Contains("Charger"))
+                {
+                    enemy.GetComponent<Charger>().spawner = this;
+                }
+                else if(enemy.name.Contains("Horf"))
+                {
+                    enemy.GetComponent<Horf>().spawner = this;
+                }
+                else if(enemy.name.Contains("RedBoomFly"))
+                {
+                    enemy.GetComponent<RedBoomFly>().spawner = this;
+                }
+
+
                 int index = Random.Range(0, spawnPoints.Count);
                 Transform pos = spawnPoints[index];
 
@@ -43,6 +58,13 @@ public class Spawner : MonoBehaviour
 
                 spawnPoints.Remove(pos);
             }
+        }
+        if (bossRoom)
+        {
+            GameObject enemy = PoolManager.Instance.SpawnFromPool(enemyName) as GameObject;
+            enemy.transform.position = spawnPoints[0].position;
+
+            enemy.GetComponent<DukeOfFlies>().spawner = this;
         }
 
     }

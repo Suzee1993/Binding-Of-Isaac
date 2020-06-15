@@ -12,7 +12,8 @@ public enum EnemyState
     Wander,
     Follow,
     Attack,
-    Die
+    Die,
+    Null
 };
 
 public class Enemy : MonoBehaviour
@@ -38,8 +39,6 @@ public class Enemy : MonoBehaviour
 
     public bool coolDownAttack = false;
     public float coolDownTime;
-
-    protected Spawner spawner;
 
     protected virtual void OnEnable()
     {
@@ -125,13 +124,18 @@ public class Enemy : MonoBehaviour
     {
         //anim.SetTrigger("DeathCycle");
         //spawner.enemyCounter--;
-        GameController.instance.enemyKillCounter--;
+        //GameController.instance.enemyKillCounter--;
 
         DropItem();
         gameObject.SetActive(false);
     }
 
-    public void TakeDamage(float damage)
+    public void Damage(float damage)
+    {
+        TakeDamage(damage);
+    }
+
+    protected virtual void TakeDamage(float damage)
     {
         //anim.SetTrigger("TakeDamage");
         health -= damage;
@@ -145,7 +149,7 @@ public class Enemy : MonoBehaviour
     {
         if (!coolDownAttack && collision.CompareTag("Player"))
         {
-            var pScript = player.GetComponent<PlayerController>();
+            //var pScript = player.GetComponent<PlayerController>();
             //pScript.TakeDamage(damage);
 
             GameController.TakeDamage(damage);
@@ -194,4 +198,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(coolDownTime);
         coolDownAttack = false;
     }
+
+
+
 }

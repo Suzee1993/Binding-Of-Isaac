@@ -21,6 +21,7 @@ public class Room : MonoBehaviour
     public Door downDoor;
 
     public bool enemyRoom;
+    public bool bossRoom;
 
     public List<Door> doors = new List<Door>();
 
@@ -31,6 +32,8 @@ public class Room : MonoBehaviour
     private bool updatedDoors = false;
     private Spawner spawner;
     public int GCKillCounter;
+
+    //private DukeOfFlies boss;
 
     void Start()
     {
@@ -74,6 +77,11 @@ public class Room : MonoBehaviour
 
         }
 
+        //if (spawner.bossRoom)
+        //{
+        //    StartCoroutine(GetBoss());
+        //}
+
     }
 
     private void Update()
@@ -98,7 +106,8 @@ public class Room : MonoBehaviour
             {
                 foreach (Door door in doors)
                 {
-                    door.OpenDoors();
+                    if (!door.closedDoor)
+                        door.OpenDoors();
                 }
             }
         }
@@ -106,38 +115,12 @@ public class Room : MonoBehaviour
         {
             foreach (Door door in doors)
             {
-                door.OpenDoors();
+                if (!door.closedDoor)
+                    door.OpenDoors();
             }
         }
 
 
-        //if(enemyRoom && playerInRoom && !locked && firstEntry)
-        //{
-        //    locked = true;
-
-        //    foreach (Door door in doors)
-        //    {
-        //        GMKillCounter = GameController.instance.enemyKillCounter;
-        //        door.CloseDoors();
-        //    }
-        //}
-
-        //if(enemyRoom && (GMKillCounter + spawner.enemyCounter) == GameController.instance.enemyKillCounter)
-        //{
-        //    foreach (Door door in doors)
-        //    {
-        //        spawner.enemiesInRoom = false;
-        //        door.OpenDoors();
-        //    }
-        //}
-
-        //if (!firstEntry)
-        //{
-        //    foreach (Door door in doors)
-        //    {
-        //        door.OpenDoors();
-        //    }
-        //}
     }
 
     public void RemoveUnconnectedDoors()
@@ -253,7 +236,7 @@ public class Room : MonoBehaviour
         {
             StartCoroutine(Wait());
             //playerInRoom = true;
-        }
+        }        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -276,11 +259,17 @@ public class Room : MonoBehaviour
         var doorchild = door.gameObject.transform.GetChild(0);
         doorchild.GetComponent<SpriteRenderer>().enabled = false;
         door.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+        door.closedDoor = true;
     }
 
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(.6f);
         playerInRoom = true;
+
+        if (bossRoom && spawner.bossRoom)
+        {
+            spawner.playerInBossRoom = true;
+        }
     }
 }
