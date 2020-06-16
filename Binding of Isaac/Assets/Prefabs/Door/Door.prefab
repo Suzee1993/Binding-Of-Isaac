@@ -129,7 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorType: 0
-  spawner: {fileID: 0}
   doorCollider: {fileID: 4348120297331191698}
   sr: {fileID: 3922267819527433156}
   bossRoomDoor: {fileID: -7010781582906540005, guid: b6b7774b8c0e6de45bf70f0c89fb3748,
@@ -143,9 +142,9 @@ MonoBehaviour:
   doorMask:
     serializedVersion: 2
     m_Bits: 512
-  radius: 0.2
-  closedDoor: 0
   doors: {fileID: 5861938312831589337}
+  radius: 0.25
+  closedDoor: 0
 --- !u!61 &4348120297331191698
 BoxCollider2D:
   m_ObjectHideFlags: 0

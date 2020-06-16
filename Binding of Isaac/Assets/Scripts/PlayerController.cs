@@ -50,11 +50,11 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);
 
         collectedText.text = "Items Collected: " + collectedAmount;
-        if(fireDelay > 0.2f)
+        if(fireDelay > 0.5f)
         {
             attackSpeedText.text = "Attack Speed: Slow";
         }
-        else if (fireDelay < 0.2f)
+        else if (fireDelay < 0.5f)
         {
             attackSpeedText.text = "Attack Speed: Fast";
         }
@@ -76,16 +76,6 @@ public class PlayerController : MonoBehaviour
             lastFire = Time.time;
         }
     }
-
-    //public void TakeDamage(float damage)
-    //{
-    //    //anim.SetTrigger("TakeDamage");
-    //    health -= damage;
-    //    if (health <= 0)
-    //    {
-    //        //TODO: Death function
-    //    }
-    //}
 
     void Shoot(float x, float y)
     {

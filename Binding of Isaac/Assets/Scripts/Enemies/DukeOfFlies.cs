@@ -10,9 +10,14 @@ public class DukeOfFlies : Enemy
     public Image healthBarFilled;
     public Text healthText;
     public float maxHealth;
-    //public GameObject healthBarHolder;
     public Spawner spawner;
+    public Transform spawnPoint;
+    public List<EternalFly> defendFliesList = new List<EternalFly>();
+    public int minAmountFlies;
+    public int maxAmountFlies;
+    public List<Transform> defendPoints = new List<Transform>();
 
+    private EternalFly efScript;
     private float fillValue;
 
     protected override void OnEnable()
@@ -22,7 +27,7 @@ public class DukeOfFlies : Enemy
 
         canvas.enabled = false;
 
-        //healthBarHolder.SetActive(false);
+        StartCoroutine(Wait());
     }
 
     protected override void Update()
@@ -33,7 +38,6 @@ public class DukeOfFlies : Enemy
         {
             currentState = EnemyState.Follow;
             canvas.enabled = true;
-            //healthBarHolder.SetActive(true);
         }
     }
 
@@ -59,12 +63,94 @@ public class DukeOfFlies : Enemy
     {
         base.Attack();
         //TODO: Build timer
-        //SpawnEternalFlies();
+        SpawnDefendFlies();
+        //SpawnBigAttackFly();
+
+
+    }
+
+    protected override void Die()
+    {
+        efScript.bossIsAlive = false;
+        base.Die();
     }
 
 
-    void SpawnEternalFlies()
+    void SpawnSmallAttackFlies()
     {
+        int amount = Random.Range(minAmountFlies, maxAmountFlies);        
+  
+        for (int i = 0; i < amount; i++)
+        {
+            //TODO: Amount of flies
+            GameObject eternalFly = PoolManager.Instance.SpawnFromPool("AttackEternalFly") as GameObject;
 
+            FlyInfo(eternalFly);
+
+            efScript.flyType = FlyType.Attack;
+
+        }
+
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(2f);
+        SpawnDefendFlies();
+    }
+
+    void SpawnBigAttackFly()
+    {
+        GameObject eternalFly = PoolManager.Instance.SpawnFromPool("AttackEternalFly") as GameObject;
+
+        FlyInfo(eternalFly);
+
+        efScript.flyType = FlyType.Defend;
+        eternalFly.transform.localScale += new Vector3(0.5f, 0.5f, 0);
+
+        //eternalFly.transform.position = spawnPoint.position;
+        //eternalFly.transform.rotation = spawnPoint.transform.rotation;
+    }
+
+    void SpawnDefendFlies()
+    {
+        int amount = Random.Range(minAmountFlies, maxAmountFlies);
+
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject eternalFly = PoolManager.Instance.SpawnFromPool("DefendEternalFly") as GameObject;
+
+            //efScript = eternalFly.GetComponent<EternalFly>();
+            //efScript.boss = this;
+            //efScript.spawner = spawner;
+            //defendFliesList.Add(efScript);
+
+            FlyInfo(eternalFly);
+
+            efScript.flyType = FlyType.Defend;
+            //eternalFly.transform.position = spawnPoint.position;
+            //eternalFly.transform.rotation = spawnPoint.transform.rotation;
+        }
+
+        //TODO: Build Timer and Randomizer
+        if (defendFliesList.Count != 0)
+        {
+            SpawnSmallAttackFlies();
+        }
+    }
+
+    void FlyInfo(GameObject eternalFly)
+    {
+        efScript = eternalFly.GetComponent<EternalFly>();
+        efScript.boss = this;
+        efScript.spawner = spawner;
+
+        if(efScript.flyType == FlyType.Defend)
+        {
+            defendFliesList.Add(efScript);
+        }
+
+        eternalFly.transform.position = spawnPoint.position;
+        eternalFly.transform.rotation = spawnPoint.transform.rotation;
     }
 }

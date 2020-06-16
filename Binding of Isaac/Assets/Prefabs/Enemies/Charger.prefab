@@ -78,7 +78,6 @@ MonoBehaviour:
   health: 2
   itemNames:
   - SpeedItem
-  - AttackSpeedItem
   chanceRate: 25
   coolDownAttack: 0
   coolDownTime: 0.5

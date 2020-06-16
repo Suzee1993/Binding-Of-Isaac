@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     private static float health = 6;
     private static float maxHealth;
     private static float speed = 2.2f;
-    private static float fireDelay = 0.2f;
+    private static float fireDelay = 0.5f;
     private static float damage = 1f;
 
     public static float Health { get => health; set => health = value; }
