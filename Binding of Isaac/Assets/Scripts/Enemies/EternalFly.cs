@@ -35,17 +35,11 @@ public class EternalFly : MonoBehaviour
     public bool coolDownAttack = false;
     public float coolDownTime;
 
-    int index;
+    public int index;
 
     private void OnEnable()
     {
         player = FindObjectOfType<PlayerController>();
-
-        if (flyType == FlyType.Defend)
-        {
-            index = Random.Range(0, boss.defendPoints.Count);
-
-        }
     }
 
     private void Update()

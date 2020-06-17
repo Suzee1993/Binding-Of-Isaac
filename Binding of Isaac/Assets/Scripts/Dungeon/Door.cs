@@ -21,6 +21,7 @@ public class Door : MonoBehaviour
 
     public LayerMask enemyMask;
     public Transform doorMaskTransform;
+    public Transform enemyDoorCloserTransform;
     public LayerMask doorMask;
     public GameObject doors;
     public float radius;
@@ -36,7 +37,7 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        if (Physics2D.OverlapCircle(transform.position, radius, enemyMask))
+        if (Physics2D.OverlapCircle(enemyDoorCloserTransform.position, radius, enemyMask))
         {
             CloseDoors();
         }
@@ -50,7 +51,7 @@ public class Door : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(doorMaskTransform.position, radius);
+        Gizmos.DrawSphere(enemyDoorCloserTransform.position, radius);
     }
 
     public void CloseDoors()

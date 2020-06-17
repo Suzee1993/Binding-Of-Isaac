@@ -74,7 +74,7 @@ MonoBehaviour:
   speed: 0.2
   range: 1.5
   damage: 1
-  attackRange: 2
+  attackRange: 1.5
   health: 2
   itemNames:
   - SpeedItem
@@ -210,7 +210,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 711804005
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -6189378178767441202, guid: e2dc38f0944f57446a7552a06e648b9b,
     type: 3}
