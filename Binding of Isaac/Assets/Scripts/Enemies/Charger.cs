@@ -66,6 +66,8 @@ public class Charger : Enemy
 
         if (collision.CompareTag("Environment"))
         {
+            currentState == EnemyState.Wander;
+
             StartCoroutine(ChooseDirection());
         }
     }

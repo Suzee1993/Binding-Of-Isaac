@@ -30,7 +30,6 @@ public class EternalFly : MonoBehaviour
     public DukeOfFlies boss;
     public Spawner spawner;
     private PlayerController player;
-    private bool defendPointReached = false;
 
     public bool coolDownAttack = false;
     public float coolDownTime;
@@ -77,23 +76,7 @@ public class EternalFly : MonoBehaviour
     private void Defend(int index)
     {
         transform.position = Vector2.MoveTowards(transform.position, boss.defendPoints[index].position, speed * Time.deltaTime);
-
-        //if (flyType == FlyType.Defend && !defendPointReached)
-        //{
-        //    int index = Random.Range(0, boss.defendPoints.Count);
-
-        //    transform.position = Vector2.MoveTowards(transform.position, boss.defendPoints[index].position, speed * Time.deltaTime);
-
-        //    if (transform.position == boss.defendPoints[index].position)
-        //    {
-        //        defendPointReached = true;
-        //    }
-        //    else if(transform.position != boss.defendPoints[index].position)
-        //    {
-        //        defendPointReached = false ;
-        //    }
-        //}
-            
+          
     } 
     
     private void Attack()

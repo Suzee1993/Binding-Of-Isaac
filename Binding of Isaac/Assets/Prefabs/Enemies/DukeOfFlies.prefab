@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 2658705539717041473}
   m_Layer: 0
   m_Name: DukeOfFlies
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,6 +374,7 @@ MonoBehaviour:
   spawner: {fileID: 0}
   spawnPoint: {fileID: 2155016300170343238}
   defendFliesList: []
+  attackFliesList: []
   minAmountFlies: 2
   maxAmountFlies: 5
   defendPoints:
@@ -406,7 +407,7 @@ GameObject:
   - component: {fileID: 2658705539744563701}
   m_Layer: 5
   m_Name: HealthBarHolder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -481,7 +482,7 @@ GameObject:
   - component: {fileID: 2658705539982637376}
   m_Layer: 5
   m_Name: HealthBarBackground
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -556,7 +557,7 @@ GameObject:
   - component: {fileID: 2658705540202394909}
   m_Layer: 0
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -654,7 +655,7 @@ GameObject:
   - component: {fileID: 2658705540246029497}
   m_Layer: 5
   m_Name: HealthBarFilled
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -726,7 +727,7 @@ GameObject:
   - component: {fileID: 2155016300170343238}
   m_Layer: 0
   m_Name: SpawnPoint
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,7 +759,7 @@ GameObject:
   - component: {fileID: 3040206277541904442}
   m_Layer: 0
   m_Name: SpriteHolder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -882,7 +883,7 @@ GameObject:
   - component: {fileID: 241651392657425046}
   m_Layer: 0
   m_Name: DefendPoints
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

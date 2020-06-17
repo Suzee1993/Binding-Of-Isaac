@@ -13,6 +13,7 @@ public class DukeOfFlies : Enemy
     public Spawner spawner;
     public Transform spawnPoint;
     public List<EternalFly> defendFliesList = new List<EternalFly>();
+    public List<EternalFly> attackFliesList = new List<EternalFly>();
     public int minAmountFlies;
     public int maxAmountFlies;
     public List<Transform> defendPoints = new List<Transform>();
@@ -32,7 +33,7 @@ public class DukeOfFlies : Enemy
     private float randomBAFTime;
     private float randomBAFTimeMin = 15f;
     private float randomBAFTimeMax = 20f;
-    private float BigAttackFlyTimer = 0;
+    private float bigAttackFlyTimer = 0;
 
     //SmallAttackFliesTimer
     private float randomAFTime;
@@ -49,6 +50,7 @@ public class DukeOfFlies : Enemy
 
         randomDFTime = 4f;
         randomBAFTime = Random.Range(randomBAFTimeMin, randomBAFTimeMax);
+        randomAFTime = Random.Range(randomAFTimeMin, randomAFTimeMax);
 
         //StartCoroutine(Wait());
     }
@@ -99,17 +101,23 @@ public class DukeOfFlies : Enemy
 
     protected override void Attack()
     {
-        BigAttackFlyTimer = +Time.deltaTime;
+        bigAttackFlyTimer += Time.deltaTime;
+        //randomAFTime = Random.Range(randomAFTimeMin, randomAFTimeMax);
+        attackFliesTimer += Time.deltaTime;
 
-        //base.Attack();
+        //Wander
+        if (!chooseDir)
+        {
+            StartCoroutine(ChooseDirection());
+        }
+        transform.position += -transform.right * speed * Time.deltaTime;
 
-        currentState = EnemyState.Wander;
-
-        if(defendFliesList.Count == 0)
+        //DEFENDFLIES
+        if (defendFliesList.Count == 0)
         {
             defendFliesTimer += Time.deltaTime;
 
-            if(defendFliesTimer == randomDFTime)
+            if(defendFliesTimer >= randomDFTime)
             {
                 defendFliesTimer = 0;
                 randomDFTime = Random.Range(randomDFTimeMin, randomDFTimeMax);
@@ -117,16 +125,30 @@ public class DukeOfFlies : Enemy
                 SpawnDefendFlies();
             }
         }
-        
 
-
-        if(BigAttackFlyTimer == randomBAFTime)
+        //SMALLATTACKFLIES
+        if (defendFliesList.Count != 0 && attackFliesTimer >= randomAFTime && attackFliesList.Count == 0)
         {
-            BigAttackFlyTimer = 0;
+            SpawnSmallAttackFlies();
+        }
+
+        //BIGATTACKFLY
+        if (bigAttackFlyTimer >= randomBAFTime && attackFliesList.Count == 0)
+        {
+            bigAttackFlyTimer = 0;
             randomBAFTime = Random.Range(randomBAFTimeMin, randomBAFTimeMax);
 
-            //SpawnBigAttackFly();
+            SpawnBigAttackFly();
         }
+    }
+
+    protected override void Wander()
+    {
+        if (!chooseDir)
+        {
+            StartCoroutine(ChooseDirection());
+        }
+        transform.position += -transform.right * speed * Time.deltaTime;
     }
 
     protected override void Die()
@@ -135,21 +157,48 @@ public class DukeOfFlies : Enemy
         base.Die();
     }
 
+    void SpawnDefendFlies()
+    {
+        int amount = Random.Range(minAmountFlies, maxAmountFlies);
+
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject eternalFly = PoolManager.Instance.SpawnFromPool("DefendEternalFly") as GameObject;
+
+            FlyInfo(eternalFly);
+
+            efScript.flyType = FlyType.Defend;
+
+            efScript.index = Random.Range(0, defendPoints.Count);
+        }
+
+    }
 
     void SpawnSmallAttackFlies()
     {
         int amount = Random.Range(minAmountFlies, maxAmountFlies);        
-  
+
+        StartCoroutine(DelayedSpawn(amount));
+
+        attackFliesTimer = 0;
+        randomAFTime = Random.Range(randomAFTimeMin, randomAFTimeMax);
+    }
+
+    IEnumerator DelayedSpawn(int amount)
+    {
         for (int i = 0; i < amount; i++)
         {
-            //TODO: Amount of flies
             GameObject eternalFly = PoolManager.Instance.SpawnFromPool("AttackEternalFly") as GameObject;
+
+
+            attackFliesList.Add(this.efScript);
 
             FlyInfo(eternalFly);
 
             efScript.flyType = FlyType.Attack;
-            efScript.speed = 0.8f;
+            efScript.speed = 0.6f;
 
+            yield return new WaitForSeconds(0.3f);
         }
     }
 
@@ -162,12 +211,6 @@ public class DukeOfFlies : Enemy
         }
     }
 
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(2f);
-        SpawnDefendFlies();
-    }
-
     void SpawnBigAttackFly()
     {
         GameObject eternalFly = PoolManager.Instance.SpawnFromPool("AttackEternalFly") as GameObject;
@@ -175,51 +218,7 @@ public class DukeOfFlies : Enemy
         FlyInfo(eternalFly);
 
         efScript.flyType = FlyType.Attack;
-        eternalFly.transform.localScale += new Vector3(0.5f, 0.5f, 0);
-
-        //eternalFly.transform.position = spawnPoint.position;
-        //eternalFly.transform.rotation = spawnPoint.transform.rotation;
-    }
-
-    void SpawnDefendFlies()
-    {
-        int amount = Random.Range(minAmountFlies, maxAmountFlies);
-
-        for (int i = 0; i < amount; i++)
-        {
-            GameObject eternalFly = PoolManager.Instance.SpawnFromPool("DefendEternalFly") as GameObject;
-
-            //efScript = eternalFly.GetComponent<EternalFly>();
-            //efScript.boss = this;
-            //efScript.spawner = spawner;
-            //defendFliesList.Add(efScript);
-
-            FlyInfo(eternalFly);
-
-            efScript.flyType = FlyType.Defend;
-
-            efScript.index = Random.Range(0, defendPoints.Count);
-
-            //StartCoroutine(MoveDefendFly());
-
-            //eternalFly.transform.position = spawnPoint.position;
-            //eternalFly.transform.rotation = spawnPoint.transform.rotation;
-        }
-
-        randomAFTime = Random.Range(randomAFTimeMin, randomAFTimeMax);
-        attackFliesTimer += Time.deltaTime;
-
-
-        //TODO: Build Timer and Randomizer
-        if (defendFliesList.Count != 0 && attackFliesTimer == randomDFTime)
-        {
-            SpawnSmallAttackFlies();
-        }
-        else
-        {
-            attackFliesTimer = 0;
-            randomAFTime = Random.Range(randomAFTimeMin, randomAFTimeMax);
-        }
+        eternalFly.transform.localScale += new Vector3(1.5f, 1.5f, 0);
     }
 
     void FlyInfo(GameObject eternalFly)
@@ -232,14 +231,12 @@ public class DukeOfFlies : Enemy
         {
             defendFliesList.Add(efScript);
         }
+        else if(efScript.flyType == FlyType.Attack)
+        {
+            attackFliesList.Add(efScript);
+        }
 
         eternalFly.transform.position = spawnPoint.position;
         eternalFly.transform.rotation = spawnPoint.transform.rotation;
     }
-
-    //IEnumerator MoveDefendFly()
-    //{
-    //    yield return new WaitForSeconds(0.3f);
-    //    int index = Random.Range(0, defendPoints.Count);
-    //}
 }

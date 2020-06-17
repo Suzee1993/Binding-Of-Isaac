@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4485857952320679447}
   m_Layer: 0
   m_Name: DefendEternalFly
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 711804005
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1644684242695118927, guid: 2deddcb9d4012d3449ae82fd996dd208,
     type: 3}
@@ -120,3 +120,4 @@ MonoBehaviour:
   spawner: {fileID: 0}
   coolDownAttack: 0
   coolDownTime: 0
+  index: 0
