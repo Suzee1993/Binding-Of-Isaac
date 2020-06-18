@@ -31,12 +31,14 @@ public class Room : MonoBehaviour
 
     private bool updatedDoors = false;
     private Spawner spawner;
-    public int GCKillCounter;
-
-    //private DukeOfFlies boss;
+    //public int GCKillCounter;
+    public GameObject bossPanel;
+    public bool bossPanelActivated = false;
 
     void Start()
     {
+        bossPanel.SetActive(false);
+
         if(RoomController.Instance == null)
         {
             Debug.Log("You pressed play in de wrong scene.");
@@ -74,14 +76,7 @@ public class Room : MonoBehaviour
         if (enemyRoom)
         {
             spawner = GetComponent<Spawner>();
-
         }
-
-        //if (spawner.bossRoom)
-        //{
-        //    StartCoroutine(GetBoss());
-        //}
-
     }
 
     private void Update()
@@ -94,8 +89,7 @@ public class Room : MonoBehaviour
 
         if (enemyRoom)
         {
-            GCKillCounter = GameController.instance.enemyKillCounter;
-            if (playerInRoom && (GameController.instance.enemyKillCounter != GCKillCounter + spawner.enemyCounter))
+            if (playerInRoom && spawner.enemyCounter > 0)
             {
                 foreach (Door door in doors)
                 {
@@ -119,8 +113,6 @@ public class Room : MonoBehaviour
                     door.OpenDoors();
             }
         }
-
-
     }
 
     public void RemoveUnconnectedDoors()
@@ -224,9 +216,6 @@ public class Room : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             RoomController.Instance.OnPlayerEnterRoom(this);
-            //playerInRoom = true;
-
-
         }
     }
 
@@ -235,7 +224,6 @@ public class Room : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             StartCoroutine(Wait());
-            //playerInRoom = true;
         }        
     }
 
@@ -270,6 +258,12 @@ public class Room : MonoBehaviour
         if (bossRoom && spawner.bossRoom)
         {
             spawner.playerInBossRoom = true;
+            if (!bossPanelActivated)
+            {
+                bossPanelActivated = true;
+                bossPanel.SetActive(true);
+            }
+
         }
     }
 }

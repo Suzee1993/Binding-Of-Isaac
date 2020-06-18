@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 2658705539717041532}
   - component: {fileID: 6280171617011599362}
   - component: {fileID: 2658705539717041473}
+  - component: {fileID: 3811321456569456409}
   m_Layer: 0
   m_Name: DukeOfFlies
   m_TagString: Enemy
@@ -360,13 +361,13 @@ MonoBehaviour:
   currentState: 0
   speed: 0.3
   range: 0
-  damage: 0
+  damage: 1
   attackRange: 0
-  health: 0
+  health: 50
   itemNames: []
   chanceRate: 0
   coolDownAttack: 0
-  coolDownTime: 0
+  coolDownTime: 0.2
   canvas: {fileID: 2658705540202394911}
   healthBarFilled: {fileID: 2658705540246029497}
   healthText: {fileID: 0}
@@ -394,6 +395,22 @@ MonoBehaviour:
   - {fileID: 8394824821161364792}
   - {fileID: 7696382877424901150}
   - {fileID: 1901581784259679290}
+--- !u!58 &3811321456569456409
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2658705539717041533}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0018396378, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.35098702
 --- !u!1 &2658705539744563699
 GameObject:
   m_ObjectHideFlags: 0

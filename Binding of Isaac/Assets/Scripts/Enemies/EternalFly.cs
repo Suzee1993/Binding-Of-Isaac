@@ -75,8 +75,7 @@ public class EternalFly : MonoBehaviour
 
     private void Defend(int index)
     {
-        transform.position = Vector2.MoveTowards(transform.position, boss.defendPoints[index].position, speed * Time.deltaTime);
-          
+        transform.position = Vector2.MoveTowards(transform.position, boss.defendPoints[index].position, speed * Time.deltaTime);    
     } 
     
     private void Attack()
@@ -85,8 +84,10 @@ public class EternalFly : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.name);
+
         if (!coolDownAttack && collision.CompareTag("Player"))
         {
             GameController.TakeDamage(damage);
@@ -95,19 +96,22 @@ public class EternalFly : MonoBehaviour
         }
     }
 
-    protected virtual void Die()
+    private void Die()
     {
         //anim.SetTrigger("DeathCycle");
         spawner.enemyCounter--;
         //GameController.instance.enemyKillCounter--;
+        gameObject.SetActive(false);
 
         if (flyType == FlyType.Defend)
             boss.defendFliesList.Remove(this);
 
-        gameObject.SetActive(false);
+        if (flyType == FlyType.Attack)
+            boss.attackFliesList.Remove(this);
+
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
@@ -116,7 +120,7 @@ public class EternalFly : MonoBehaviour
         }
     }
 
-    protected virtual IEnumerator CoolDown()
+    private IEnumerator CoolDown()
     {
         coolDownAttack = true;
         yield return new WaitForSeconds(coolDownTime);

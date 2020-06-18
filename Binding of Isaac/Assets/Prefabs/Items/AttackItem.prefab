@@ -132,7 +132,7 @@ MonoBehaviour:
   attackSpeedStat: 0
   healthStat: 0
   title: Attack Pill
-  description: Multiply damage by 25%
+  description: Increase damage by 25%
   sprite: {fileID: -3670487015809721425, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}
 --- !u!50 &-7250240127677436850
 Rigidbody2D:

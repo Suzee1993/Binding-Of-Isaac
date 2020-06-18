@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -12,20 +13,9 @@ public class PlayerController : MonoBehaviour
     public float damage;
     public static int collectedAmount = 0;
 
-    [Header("UI")]
-    public Text collectedText;
-    public Text attackSpeedText;
-    public Text speedText;
-    public Text damageText;
-
     [Header("Fire Delay Timer")]
     private float lastFire;
     public float fireDelay;
-
-    //private int damageItem = 1;
-    //private int speedItem = 2;
-    //private int attackSpeedItem = 3;
-    //private int healthItem = 4;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -48,22 +38,6 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);
-
-        collectedText.text = "Items Collected: " + collectedAmount;
-        if(fireDelay > 0.5f)
-        {
-            attackSpeedText.text = "Attack Speed: Slow";
-        }
-        else if (fireDelay < 0.5f)
-        {
-            attackSpeedText.text = "Attack Speed: Fast";
-        }
-        else
-        {
-            attackSpeedText.text = "Attack Speed: Medium";
-        }
-        speedText.text = "Speed: " + Mathf.Round(speed * 100) / 100f;
-        damageText.text = "Damage: " + Mathf.Round(damage * 100) / 100f;
         
 
         //Shooting
@@ -74,6 +48,11 @@ public class PlayerController : MonoBehaviour
         {
             Shoot(shootHor, shootVer);
             lastFire = Time.time;
+        }
+
+        if(GameController.Health <= 0)
+        {
+            StartCoroutine(LoadLastScene());
         }
     }
 
@@ -96,6 +75,13 @@ public class PlayerController : MonoBehaviour
             (y < 0) ? Mathf.Floor(y) * bulletSpeed : Mathf.Ceil(y) * bulletSpeed,
             0
         );
+    }
+
+    static IEnumerator LoadLastScene()
+    {
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene("EndScene");
     }
 
     #region Timer

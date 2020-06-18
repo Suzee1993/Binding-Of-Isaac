@@ -129,7 +129,7 @@ MonoBehaviour:
   damageStat: 0
   speedStat: 0
   attackSpeedStat: 0
-  healthStat: 1
+  healthStat: 2
   title: Health Item
-  description: Increase health +1
+  description: Increase health +2
   sprite: {fileID: -282399551362747047, guid: fecb3f1ed1b08e445a4337750fdca341, type: 3}

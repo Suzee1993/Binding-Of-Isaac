@@ -44,8 +44,15 @@ public class InventorySlot : MonoBehaviour
         }
         else if (curItemType == Item.ItemTypes.Speed)
         {
-            GameController.SpeedUp(speedStat, damageStat, curItemType);
-            inventory.RevomeFromInventory(this.gameObject, i);
+            if(GameController.Health < (GameController.MaxHealth / 2))
+            {
+                GameController.SpeedUp(speedStat, damageStat, curItemType);
+                inventory.RevomeFromInventory(this.gameObject, i);
+            }
+            else
+            {
+                Debug.Log("Health not low enough");
+            }
         }
         else if (curItemType == Item.ItemTypes.AttackSpeed)
         {

@@ -27,10 +27,26 @@ public class BulletController : MonoBehaviour
             }
             else if (target == "Enemy")
             {
-                var enemy = other.GetComponent<Enemy>();
-                enemy.Damage(damage);
-                gameObject.SetActive(false);
+                if (other.name.Contains("Eternal"))
+                {
+                    var fly = other.GetComponent<EternalFly>();
+                    fly.TakeDamage(damage);
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    var enemy = other.GetComponent<Enemy>();
+                    enemy.Damage(damage);
+                    gameObject.SetActive(false);
+                }
+
             }
+            //else if (target == "Fly")
+            //{
+            //    var fly = other.GetComponent<EternalFly>();
+            //    fly.TakeDamage(damage);
+            //    gameObject.SetActive(false);
+            //}
         }        
 
         //else if(other.CompareTag("Environment") || other.CompareTag("Collectable"))

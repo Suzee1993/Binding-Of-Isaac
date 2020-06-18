@@ -72,15 +72,11 @@ public class Inventory : MonoBehaviour
         isFull[i] = false;
 
         invs.taken = false;
-        
-        
-
-        //InventorySlots.Add(inventorySlot);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.I))
         {
 
             if (!inventoryActive)

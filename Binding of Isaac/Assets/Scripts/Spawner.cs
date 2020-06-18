@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.PlayerLoop;
 
 public class Spawner : MonoBehaviour
 {
@@ -21,6 +23,22 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(Wait());
+
+        if (bossRoom)
+        {
+            enemyCounter = 1;
+        }
+    }
+
+    private void Update()
+    {
+        if (bossRoom)
+        {
+            if(enemyCounter <= 0)
+            {
+                StartCoroutine(LoadLastScene());
+            }
+        }
     }
 
     IEnumerator Wait()
@@ -54,7 +72,7 @@ public class Spawner : MonoBehaviour
                 enemy.transform.position = pos.position;
 
                 enemyCounter++;
-                GameController.instance.enemyKillCounter++;
+                //GameController.instance.enemyKillCounter++;
 
                 spawnPoints.Remove(pos);
             }
@@ -67,5 +85,12 @@ public class Spawner : MonoBehaviour
             enemy.GetComponent<DukeOfFlies>().spawner = this;
         }
 
+    }
+
+    IEnumerator LoadLastScene()
+    {
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene("EndScene");
     }
 }

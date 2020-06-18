@@ -110,9 +110,8 @@ public class GameController : MonoBehaviour
 
     private static void KillPlayer()
     {
-
+        //animation
     }
-
 
     #region Timer
     //public static IEnumerator Timer(float prevPlayerStat, float prevPlayerStat2, float time, Item.ItemTypes itemType)

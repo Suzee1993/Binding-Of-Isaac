@@ -149,9 +149,6 @@ public class Enemy : MonoBehaviour
     {
         if (!coolDownAttack && collision.CompareTag("Player"))
         {
-            //var pScript = player.GetComponent<PlayerController>();
-            //pScript.TakeDamage(damage);
-
             GameController.TakeDamage(damage);
 
             StartCoroutine(CoolDown());

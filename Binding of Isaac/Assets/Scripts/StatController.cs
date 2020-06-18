@@ -24,7 +24,6 @@ public class StatController : MonoBehaviour
         fillValue = fillValue / GameController.MaxHealth;
 
         healthBarFilled.fillAmount = fillValue;
-        healthText.text = "Health: " + GameController.Health;
         #endregion
     }
 }

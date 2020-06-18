@@ -127,11 +127,11 @@ MonoBehaviour:
   stateTwo: 1
   itemType: 2
   damageStat: 0.5
-  speedStat: 3
+  speedStat: 1
   attackSpeedStat: 0
   healthStat: 0
   title: Speed Pill
-  description: Increase speed by 3 when health is below 50%, decrease damage bij
+  description: Increase speed by 1 when health is below 50%, decrease damage bij
     50%
   sprite: {fileID: 290803801354314165, guid: fcebfb8a470841c48833fb4b25f15b72, type: 3}
 --- !u!50 &-4893020962453749312

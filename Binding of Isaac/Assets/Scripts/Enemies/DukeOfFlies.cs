@@ -41,6 +41,8 @@ public class DukeOfFlies : Enemy
     private float randomAFTimeMax = 1.5f;
     private float attackFliesTimer = 0;
 
+    private bool isSpawning = false;
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -127,8 +129,9 @@ public class DukeOfFlies : Enemy
         }
 
         //SMALLATTACKFLIES
-        if (defendFliesList.Count != 0 && attackFliesTimer >= randomAFTime && attackFliesList.Count == 0)
+        if (defendFliesList.Count != 0 && attackFliesTimer >= randomAFTime && attackFliesList.Count == 0 && !isSpawning)
         {
+            isSpawning = true;
             SpawnSmallAttackFlies();
         }
 
@@ -139,6 +142,18 @@ public class DukeOfFlies : Enemy
             randomBAFTime = Random.Range(randomBAFTimeMin, randomBAFTimeMax);
 
             SpawnBigAttackFly();
+        }
+
+        //RESETTIMERS
+        if(bigAttackFlyTimer > 60f)
+        {
+            bigAttackFlyTimer = 0;
+            randomBAFTime = Random.Range(randomBAFTimeMin, randomBAFTimeMax);
+        }
+        else if(attackFliesTimer > 60f)
+        {
+            attackFliesTimer = 0;
+            randomAFTime = Random.Range(randomAFTimeMin, randomAFTimeMax);
         }
     }
 
@@ -154,6 +169,8 @@ public class DukeOfFlies : Enemy
     protected override void Die()
     {
         efScript.bossIsAlive = false;
+        spawner.enemyCounter--;
+        //GameController.instance.enemyKillCounter--;
         base.Die();
     }
 
@@ -165,9 +182,10 @@ public class DukeOfFlies : Enemy
         {
             GameObject eternalFly = PoolManager.Instance.SpawnFromPool("DefendEternalFly") as GameObject;
 
-            FlyInfo(eternalFly);
+            spawner.enemyCounter++;
+            //GameController.instance.enemyKillCounter++;
 
-            efScript.flyType = FlyType.Defend;
+            FlyInfo(eternalFly);
 
             efScript.index = Random.Range(0, defendPoints.Count);
         }
@@ -182,6 +200,7 @@ public class DukeOfFlies : Enemy
 
         attackFliesTimer = 0;
         randomAFTime = Random.Range(randomAFTimeMin, randomAFTimeMax);
+        isSpawning = false;
     }
 
     IEnumerator DelayedSpawn(int amount)
@@ -190,30 +209,23 @@ public class DukeOfFlies : Enemy
         {
             GameObject eternalFly = PoolManager.Instance.SpawnFromPool("AttackEternalFly") as GameObject;
 
-
-            attackFliesList.Add(this.efScript);
+            spawner.enemyCounter++;
+            //GameController.instance.enemyKillCounter++;
 
             FlyInfo(eternalFly);
 
-            efScript.flyType = FlyType.Attack;
             efScript.speed = 0.6f;
 
             yield return new WaitForSeconds(0.3f);
         }
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision);
-        if (collision.CompareTag("Environment"))
-        {
-            StartCoroutine(ChooseDirection());
-        }
-    }
-
     void SpawnBigAttackFly()
     {
         GameObject eternalFly = PoolManager.Instance.SpawnFromPool("AttackEternalFly") as GameObject;
+
+        spawner.enemyCounter++;
+        //GameController.instance.enemyKillCounter++;
 
         FlyInfo(eternalFly);
 
