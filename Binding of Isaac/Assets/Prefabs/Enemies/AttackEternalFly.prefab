@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 7802283476381113095}
   - component: {fileID: 9107623424120939581}
   - component: {fileID: 7208131819979770832}
+  - component: {fileID: 2056334427}
   m_Layer: 0
   m_Name: SpriteHolder
   m_TagString: Enemy
@@ -227,3 +228,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbc7e9d36983fd43ae165f3554328b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2056334427
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512737259599564851}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b7edef23966e672468442d8b36a88e00, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

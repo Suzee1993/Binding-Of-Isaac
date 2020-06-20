@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 7904043039148539993}
   - component: {fileID: 7904043039148539995}
   - component: {fileID: 7904043039148539994}
+  - component: {fileID: 2763482595528601414}
   m_Layer: 11
   m_Name: SpriteHolder
   m_TagString: Untagged
@@ -99,7 +100,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 711804005
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 2325286793557207375, guid: 3554074cdad6b154582fae105da6cb24,
     type: 3}
@@ -125,6 +126,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffbc7e9d36983fd43ae165f3554328b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2763482595528601414
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904043039148539992}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d2ad6b0abd5cc745b7e43b57329747a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7904043039812610860
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +208,12 @@ MonoBehaviour:
   bulletName: EnemyBullet
   bulletSpeed: 1.5
   shootPoint: {fileID: 7904043038926644914}
+  idleSprite: {fileID: 2325286793557207375, guid: 3554074cdad6b154582fae105da6cb24,
+    type: 3}
+  attackSprite: {fileID: 1597677824887631196, guid: 3554074cdad6b154582fae105da6cb24,
+    type: 3}
+  dieSprite: {fileID: 9076814460106956445, guid: 3554074cdad6b154582fae105da6cb24,
+    type: 3}
   fireDelay: 1.5
   spawner: {fileID: 0}
 --- !u!58 &565199459

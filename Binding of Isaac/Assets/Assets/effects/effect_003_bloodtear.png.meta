@@ -1,7 +1,85 @@
 fileFormatVersion: 2
 guid: 46812400c092ebb47a8e1f5354f436bc
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2231282018653229905
+    second: effect_003_bloodtear_0
+  - first:
+      213: 6533238382337017965
+    second: effect_003_bloodtear_1
+  - first:
+      213: -8271036546069713035
+    second: effect_003_bloodtear_2
+  - first:
+      213: 439805360667024496
+    second: effect_003_bloodtear_3
+  - first:
+      213: -2859656822464896610
+    second: effect_003_bloodtear_4
+  - first:
+      213: -2085753865246300752
+    second: effect_003_bloodtear_5
+  - first:
+      213: 2782580913711451659
+    second: effect_003_bloodtear_6
+  - first:
+      213: 9143147511654763061
+    second: effect_003_bloodtear_7
+  - first:
+      213: 5707164672313810383
+    second: effect_003_bloodtear_8
+  - first:
+      213: -1652306471536693347
+    second: effect_003_bloodtear_9
+  - first:
+      213: 7551609101459054457
+    second: effect_003_bloodtear_10
+  - first:
+      213: -8121453960424723144
+    second: effect_003_bloodtear_11
+  - first:
+      213: -4702504886233217450
+    second: effect_003_bloodtear_12
+  - first:
+      213: -4945018531115649129
+    second: effect_003_bloodtear_13
+  - first:
+      213: -6656227356798282440
+    second: effect_003_bloodtear_14
+  - first:
+      213: 8806994295386568453
+    second: effect_003_bloodtear_15
+  - first:
+      213: 7022222430404653206
+    second: effect_003_bloodtear_16
+  - first:
+      213: 3477824138496633785
+    second: effect_003_bloodtear_17
+  - first:
+      213: -9094279210780936067
+    second: effect_003_bloodtear_18
+  - first:
+      213: 5041324617994952731
+    second: effect_003_bloodtear_19
+  - first:
+      213: -420101453147712846
+    second: effect_003_bloodtear_20
+  - first:
+      213: -6061894550050024262
+    second: effect_003_bloodtear_21
+  - first:
+      213: -13569178153760911
+    second: effect_003_bloodtear_22
+  - first:
+      213: -1094309741866830921
+    second: effect_003_bloodtear_23
+  - first:
+      213: 1657294484576728933
+    second: effect_003_bloodtear_24
+  - first:
+      213: -9219312321211916399
+    second: effect_003_bloodtear_25
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +118,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +149,276 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: effect_003_bloodtear_0
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 213
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 153da839c2b17fe10800000000000000
+      internalID: 2231282018653229905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_2
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 210
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57fad3b4510673d80800000000000000
+      internalID: -8271036546069713035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_4
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 218
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e91257565457058d0800000000000000
+      internalID: -2859656822464896610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_5
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 218
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b5a81d09e9ed03e0800000000000000
+      internalID: -2085753865246300752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_9
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 137
+        width: 49
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9fe9f7b404d119e0800000000000000
+      internalID: -1652306471536693347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_12
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 143
+        width: 38
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656c78d88b85dbeb0800000000000000
+      internalID: -4702504886233217450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_15
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 134
+        width: 47
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 507786376aab83a70800000000000000
+      internalID: 8806994295386568453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_17
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 155
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bbee5ea0a6b34030800000000000000
+      internalID: 3477824138496633785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_23
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 96
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b337c1761b30d0f0800000000000000
+      internalID: -1094309741866830921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_24
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 97
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 567f8619d84eff610800000000000000
+      internalID: 1657294484576728933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_003_bloodtear_25
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 96
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19f18c43a4c6e0080800000000000000
+      internalID: -9219312321211916399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

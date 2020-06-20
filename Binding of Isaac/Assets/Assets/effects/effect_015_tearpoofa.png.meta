@@ -1,7 +1,85 @@
 fileFormatVersion: 2
 guid: 71d6d1b710cb9544d9969f869d3dac3a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4532364101911758058
+    second: effect_015_tearpoofa_0
+  - first:
+      213: -7254163278847440762
+    second: effect_015_tearpoofa_1
+  - first:
+      213: 5393396054561067356
+    second: effect_015_tearpoofa_2
+  - first:
+      213: -509003582776754275
+    second: effect_015_tearpoofa_3
+  - first:
+      213: 6016197270155316125
+    second: effect_015_tearpoofa_4
+  - first:
+      213: -2179539681276652274
+    second: effect_015_tearpoofa_5
+  - first:
+      213: -4875947695027944907
+    second: effect_015_tearpoofa_6
+  - first:
+      213: 4494177916584031618
+    second: effect_015_tearpoofa_7
+  - first:
+      213: -6355576040144556222
+    second: effect_015_tearpoofa_8
+  - first:
+      213: -3122325792798683554
+    second: effect_015_tearpoofa_9
+  - first:
+      213: 3284675804301563018
+    second: effect_015_tearpoofa_10
+  - first:
+      213: 4025216268335164804
+    second: effect_015_tearpoofa_11
+  - first:
+      213: 8656071550067920654
+    second: effect_015_tearpoofa_12
+  - first:
+      213: -6824846665246380670
+    second: effect_015_tearpoofa_13
+  - first:
+      213: 6990698091467931090
+    second: effect_015_tearpoofa_14
+  - first:
+      213: -3180610461575480453
+    second: effect_015_tearpoofa_15
+  - first:
+      213: -5827041752675263812
+    second: effect_015_tearpoofa_16
+  - first:
+      213: 8730208592360310890
+    second: effect_015_tearpoofa_17
+  - first:
+      213: -4203606874303031064
+    second: effect_015_tearpoofa_18
+  - first:
+      213: 1607973811329615785
+    second: effect_015_tearpoofa_19
+  - first:
+      213: -3629167237650244531
+    second: effect_015_tearpoofa_20
+  - first:
+      213: -624239809625221163
+    second: effect_015_tearpoofa_21
+  - first:
+      213: -8145989902809460499
+    second: effect_015_tearpoofa_22
+  - first:
+      213: 594598983819688849
+    second: effect_015_tearpoofa_23
+  - first:
+      213: 1900696885002086998
+    second: effect_015_tearpoofa_24
+  - first:
+      213: -2577948868366874217
+    second: effect_015_tearpoofa_25
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +118,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +149,276 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_0
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 213
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61b31d0ecdec911c0800000000000000
+      internalID: -4532364101911758058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_2
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 210
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c511b1dd22139da40800000000000000
+      internalID: 5393396054561067356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_4
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 218
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9b4842ca83dd7350800000000000000
+      internalID: 6016197270155316125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_5
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 218
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0513a32538b0c1e0800000000000000
+      internalID: -2179539681276652274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_9
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 136
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ec137fb354ba4d0800000000000000
+      internalID: -3122325792798683554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_12
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 143
+        width: 37
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0fc924863b802870800000000000000
+      internalID: 8656071550067920654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_15
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 133
+        width: 55
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7bf6e403a33cd3d0800000000000000
+      internalID: -3180610461575480453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_17
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 131
+        width: 57
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6803bac57ee72970800000000000000
+      internalID: 8730208592360310890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_23
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 96
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b716e10a0704800800000000000000
+      internalID: 594598983819688849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_24
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 97
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65aad302fb1a06a10800000000000000
+      internalID: 1900696885002086998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: effect_015_tearpoofa_25
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 96
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7994fdba929493cd0800000000000000
+      internalID: -2577948868366874217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

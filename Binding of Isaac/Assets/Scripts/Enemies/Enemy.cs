@@ -35,7 +35,6 @@ public class Enemy : MonoBehaviour
     protected bool chooseDir = false;
     protected Vector3 randomDir;
     //private bool dead = false;
-    private Animator anim;
 
     public bool coolDownAttack = false;
     public float coolDownTime;
@@ -43,7 +42,6 @@ public class Enemy : MonoBehaviour
     protected virtual void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        //anim = GetComponent<Animator>();
     }
 
     protected virtual void Update()
@@ -122,10 +120,6 @@ public class Enemy : MonoBehaviour
     }
     protected virtual void Die()
     {
-        //anim.SetTrigger("DeathCycle");
-        //spawner.enemyCounter--;
-        //GameController.instance.enemyKillCounter--;
-
         DropItem();
         gameObject.SetActive(false);
     }
@@ -154,7 +148,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(CoolDown());
         }
     }
-
+    
     protected virtual GameObject DropItem()
     {
         var randItem = Random.Range(0, itemNames.Count);
@@ -177,6 +171,8 @@ public class Enemy : MonoBehaviour
             Debug.Log("No Item Dropped");
             return null;
         }
+
+
     }
 
     protected virtual IEnumerator ChooseDirection()

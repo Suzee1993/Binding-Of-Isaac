@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 public class Horf : Enemy
@@ -15,9 +16,14 @@ public class Horf : Enemy
 
     public Spawner spawner;
 
+    private Animator anim;
+
     protected override void OnEnable()
     {
         base.OnEnable();
+        anim = GetComponentInChildren<Animator>();
+
+        anim.SetBool("Die", false);
     }
 
     //Doesn't move at all
@@ -29,6 +35,8 @@ public class Horf : Enemy
     {
         if(Time.time > lastFire + fireDelay)
         {
+            anim.SetBool("Attack", true);
+
             //base.Attack();
             var target = player;
 
@@ -39,12 +47,28 @@ public class Horf : Enemy
             direction = (target.transform.position - transform.position).normalized * bulletSpeed;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y);
             lastFire = Time.time;
+            StartCoroutine(ResetAnimBool());
         }
+
+
+    }
+
+    IEnumerator ResetAnimBool()
+    {
+        yield return new WaitForSeconds(.5f);
+        anim.SetBool("Attack", false);
     }
 
     protected override void Die()
     {
         spawner.enemyCounter--;
+        anim.SetBool("Die", true);
+        StartCoroutine(WaitToDie());
+    }
+
+    IEnumerator WaitToDie()
+    {
+        yield return new WaitForSeconds(.5f);
         base.Die();
     }
 }

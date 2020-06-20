@@ -457,7 +457,8 @@ MonoBehaviour:
   playerInRoom: 0
   locked: 0
   firstEntry: 0
-  GCKillCounter: 0
+  bossPanel: {fileID: 0}
+  bossPanelActivated: 0
 --- !u!4 &266967063
 Transform:
   m_ObjectHideFlags: 0

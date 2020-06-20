@@ -37,7 +37,11 @@ public class Room : MonoBehaviour
 
     void Start()
     {
-        bossPanel.SetActive(false);
+        if (bossRoom)
+        {
+            bossPanel.SetActive(false);
+        }
+
 
         if(RoomController.Instance == null)
         {

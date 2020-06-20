@@ -4,6 +4,7 @@ using System.Dynamic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class GameController : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
 
     public int enemyKillCounter = 0;
 
+    private static DateTime canBeHit = DateTime.Now;
 
     private void Awake()
     {
@@ -41,14 +43,24 @@ public class GameController : MonoBehaviour
 
     public static void TakeDamage(float damage)
     {
-        health -= damage;
-
-        if(Health <= 0)
+        if (canBeHit <= DateTime.Now)
         {
-            KillPlayer();
+            health -= damage;
+
+            if(Health <= 0)
+            {
+                KillPlayer();
+            }
+            Reset();
         }
     }
 
+    private static void Reset()
+    {
+        canBeHit = DateTime.Now.AddSeconds(3f);
+    }
+
+    #region Items
     public static void Heal(float healAmount)
     {
         //TODO: Add to Inventory
@@ -107,6 +119,8 @@ public class GameController : MonoBehaviour
 
         PlayerController.collectedAmount += 1;
     }
+
+    #endregion
 
     private static void KillPlayer()
     {

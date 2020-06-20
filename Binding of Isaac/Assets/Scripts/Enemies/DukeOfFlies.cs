@@ -79,7 +79,9 @@ public class DukeOfFlies : Enemy
         if (spawner.playerInBossRoom)
         {
             currentState = EnemyState.Attack;
-            canvas.enabled = true;
+
+            StartCoroutine(ActivateHealthBar());
+            //canvas.enabled = true;
         }
     }
 
@@ -182,12 +184,13 @@ public class DukeOfFlies : Enemy
         {
             GameObject eternalFly = PoolManager.Instance.SpawnFromPool("DefendEternalFly") as GameObject;
 
-            spawner.enemyCounter++;
             //GameController.instance.enemyKillCounter++;
 
             FlyInfo(eternalFly);
 
             efScript.index = Random.Range(0, defendPoints.Count);
+
+            spawner.enemyCounter++;
         }
 
     }
@@ -203,19 +206,26 @@ public class DukeOfFlies : Enemy
         isSpawning = false;
     }
 
+    IEnumerator ActivateHealthBar()
+    {
+        yield return new WaitForSeconds(.2f);
+
+        canvas.enabled = true;
+    }
+
     IEnumerator DelayedSpawn(int amount)
     {
         for (int i = 0; i < amount; i++)
         {
             GameObject eternalFly = PoolManager.Instance.SpawnFromPool("AttackEternalFly") as GameObject;
 
-            spawner.enemyCounter++;
+
             //GameController.instance.enemyKillCounter++;
 
             FlyInfo(eternalFly);
 
             efScript.speed = 0.6f;
-
+            spawner.enemyCounter++;
             yield return new WaitForSeconds(0.3f);
         }
     }
@@ -224,13 +234,14 @@ public class DukeOfFlies : Enemy
     {
         GameObject eternalFly = PoolManager.Instance.SpawnFromPool("AttackEternalFly") as GameObject;
 
-        spawner.enemyCounter++;
+
         //GameController.instance.enemyKillCounter++;
 
         FlyInfo(eternalFly);
 
         efScript.flyType = FlyType.Attack;
         eternalFly.transform.localScale += new Vector3(1.5f, 1.5f, 0);
+        spawner.enemyCounter++;
     }
 
     void FlyInfo(GameObject eternalFly)

@@ -36,9 +36,15 @@ public class EternalFly : MonoBehaviour
 
     public int index;
 
+    private Animator anim;
+    private bool died = false;
+
     private void OnEnable()
     {
         player = FindObjectOfType<PlayerController>();
+        //anim = GetComponentInChildren<Animator>();
+
+        //anim.SetBool("Die", false);
     }
 
     private void Update()
@@ -46,28 +52,28 @@ public class EternalFly : MonoBehaviour
         switch (flyState)
         {
             case (FlyState.Defend):
-                    Defend(index);
-            break;    
+                Defend(index);
+                break;
 
             case (FlyState.Attack):
-                    Attack();
-            break;
+                Attack();
+                break;
 
             case (FlyState.Die):
-                    Die();
-            break;
+                Die();
+                break;
         };
 
         if (!bossIsAlive)
             flyType = FlyType.Attack;
 
 
-        if(flyType == FlyType.Defend && flyState != FlyState.Die)
+        if (flyType == FlyType.Defend && flyState != FlyState.Die)
         {
             flyState = FlyState.Defend;
         }
 
-        if(flyType == FlyType.Attack && flyState != FlyState.Die)
+        if (flyType == FlyType.Attack && flyState != FlyState.Die)
         {
             flyState = FlyState.Attack;
         }
@@ -75,12 +81,12 @@ public class EternalFly : MonoBehaviour
 
     private void Defend(int index)
     {
-        transform.position = Vector2.MoveTowards(transform.position, boss.defendPoints[index].position, speed * Time.deltaTime);    
-    } 
-    
+        transform.position = Vector2.MoveTowards(transform.position, boss.defendPoints[index].position, speed * Time.deltaTime);
+    }
+
     private void Attack()
     {
-        if(flyType == FlyType.Attack)
+        if (flyType == FlyType.Attack)
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 
@@ -98,16 +104,24 @@ public class EternalFly : MonoBehaviour
 
     private void Die()
     {
-        //anim.SetTrigger("DeathCycle");
-        spawner.enemyCounter--;
-        //GameController.instance.enemyKillCounter--;
-        gameObject.SetActive(false);
+        if (!died)
+        {
+            died = true;
+            //anim.SetTrigger("DeathCycle");
+            spawner.enemyCounter--;
+            //GameController.instance.enemyKillCounter--;
 
-        if (flyType == FlyType.Defend)
-            boss.defendFliesList.Remove(this);
 
-        if (flyType == FlyType.Attack)
-            boss.attackFliesList.Remove(this);
+            if (flyType == FlyType.Defend)
+                boss.defendFliesList.Remove(this);
+
+            if (flyType == FlyType.Attack)
+                boss.attackFliesList.Remove(this);
+
+            //anim.SetBool("Die", true);
+
+            StartCoroutine(WaitToDie());
+        }
 
     }
 
@@ -125,5 +139,12 @@ public class EternalFly : MonoBehaviour
         coolDownAttack = true;
         yield return new WaitForSeconds(coolDownTime);
         coolDownAttack = false;
+    }
+
+    private IEnumerator WaitToDie()
+    {
+        yield return new WaitForSeconds(0.6f);
+
+        gameObject.SetActive(false);
     }
 }

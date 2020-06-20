@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private float lastFire;
     public float fireDelay;
 
+    private LoadScreen ls;
     private Animator anim;
     private Rigidbody2D rb;
     private string stringName = "Bullet";
@@ -24,35 +25,39 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        ls = FindObjectOfType<LoadScreen>();
         //anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        damage = GameController.Damage;
-        fireDelay = GameController.FireDelay;
-        speed = GameController.Speed;
+        if (!ls.loadScreenActive)
+        {
+            damage = GameController.Damage;
+            fireDelay = GameController.FireDelay;
+            speed = GameController.Speed;
 
-        //Movement
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+            //Movement
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);
+            rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);
         
 
-        //Shooting
-        var shootHor = Input.GetAxis("ShootHor");
-        var shootVer = Input.GetAxis("ShootVer");
+            //Shooting
+            var shootHor = Input.GetAxis("ShootHor");
+            var shootVer = Input.GetAxis("ShootVer");
 
-        if ((shootHor != 0 || shootVer != 0) && Time.time > lastFire + fireDelay)
-        {
-            Shoot(shootHor, shootVer);
-            lastFire = Time.time;
-        }
+            if ((shootHor != 0 || shootVer != 0) && Time.time > lastFire + fireDelay)
+            {
+                Shoot(shootHor, shootVer);
+                lastFire = Time.time;
+            }
 
-        if(GameController.Health <= 0)
-        {
-            StartCoroutine(LoadLastScene());
+            if(GameController.Health <= 0)
+            {
+                StartCoroutine(LoadLastScene());
+            }
         }
     }
 
