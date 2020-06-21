@@ -42,7 +42,7 @@ public class EternalFly : MonoBehaviour
     private void OnEnable()
     {
         player = FindObjectOfType<PlayerController>();
-        //anim = GetComponentInChildren<Animator>();
+        anim = GetComponentInChildren<Animator>();
 
         //anim.SetBool("Die", false);
     }
@@ -107,7 +107,7 @@ public class EternalFly : MonoBehaviour
         if (!died)
         {
             died = true;
-            //anim.SetTrigger("DeathCycle");
+            anim.SetBool("Die", true);
             spawner.enemyCounter--;
             //GameController.instance.enemyKillCounter--;
 
@@ -118,11 +118,10 @@ public class EternalFly : MonoBehaviour
             if (flyType == FlyType.Attack)
                 boss.attackFliesList.Remove(this);
 
-            //anim.SetBool("Die", true);
+
 
             StartCoroutine(WaitToDie());
         }
-
     }
 
     public void TakeDamage(float damage)

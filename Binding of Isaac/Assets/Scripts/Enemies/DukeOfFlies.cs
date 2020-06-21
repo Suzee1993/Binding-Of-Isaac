@@ -208,7 +208,7 @@ public class DukeOfFlies : Enemy
 
     IEnumerator ActivateHealthBar()
     {
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSecondsRealtime(3.5f);
 
         canvas.enabled = true;
     }

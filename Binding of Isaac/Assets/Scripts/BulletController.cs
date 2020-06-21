@@ -18,7 +18,7 @@ public class BulletController : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-
+        canHit = true;
 
         StartCoroutine(Delay());
     }

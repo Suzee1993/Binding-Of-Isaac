@@ -17,8 +17,14 @@ public class PlayerController : MonoBehaviour
     private float lastFire;
     public float fireDelay;
 
+    [Header("SpriteRenderers")]
+    public GameObject headSpriteRenderer;
+    public GameObject bodySpriteRenderer;
+
     private LoadScreen ls;
-    private Animator anim;
+    private Animator animHead;
+    private Animator animBody;
+    private SpriteRenderer srHead;
     private Rigidbody2D rb;
     private string stringName = "Bullet";
 
@@ -26,6 +32,11 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         ls = FindObjectOfType<LoadScreen>();
+
+        animHead = headSpriteRenderer.GetComponent<Animator>();
+        animBody = bodySpriteRenderer.GetComponent<Animator>();
+        srHead = headSpriteRenderer.GetComponent<SpriteRenderer>();
+
         //anim = GetComponent<Animator>();
     }
 
@@ -41,12 +52,69 @@ public class PlayerController : MonoBehaviour
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
-            rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);
-        
+            #region Head & Body Walk Animations
+            if (horizontal > 0)
+            {
+                srHead.flipX = false;
+                animHead.SetTrigger("WalkRight");
+            }
+            if (horizontal < 0)
+            {
+                srHead.flipX = true;
+                animHead.SetTrigger("WalkLeft");
+            }
+
+            if (vertical > 0)
+            {
+                animHead.SetTrigger("WalkUp");
+            }
+            if (vertical < 0)
+            {
+                animHead.SetTrigger("WalkDown");
+
+                animBody.SetBool("WalkDown", true);
+                //animBody.SetTrigger("WalkDown");
+            }
+
+            if(horizontal == 0 && vertical == 0)
+            {
+                animBody.SetBool("WalkDown", false);
+                animBody.SetTrigger("BodyIdle");
+            }
+            #endregion
+
+            rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);        
 
             //Shooting
             var shootHor = Input.GetAxis("ShootHor");
             var shootVer = Input.GetAxis("ShootVer");
+
+            #region Head Shoot Animations
+            if (shootHor > 0)
+            {
+                srHead.flipX = false;
+                animHead.SetTrigger("ShootRight");
+            }
+            if(shootHor < 0)
+            {
+                srHead.flipX = true;
+                animHead.SetTrigger("ShootLeft");
+            }
+
+            if(shootVer > 0)
+            {
+                animHead.SetTrigger("ShootUp");
+            }
+            if(shootVer < 0)
+            {
+                animHead.SetTrigger("ShootDown");
+            }
+
+            if(shootHor == 0 && shootVer == 0)
+            {
+                animHead.SetTrigger("WalkDown");
+            }
+            #endregion
 
             if ((shootHor != 0 || shootVer != 0) && Time.time > lastFire + fireDelay)
             {
@@ -86,7 +154,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        SceneManager.LoadScene("EndScene");
+        //SceneManager.LoadScene("EndScene");
     }
 
     #region Timer
