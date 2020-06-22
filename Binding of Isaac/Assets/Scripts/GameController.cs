@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour
     public int enemyKillCounter = 0;
 
     private static DateTime canBeHit = DateTime.Now;
+    public static bool hit = false;
+    public static bool dead = false;
 
     private void Awake()
     {
@@ -45,11 +47,13 @@ public class GameController : MonoBehaviour
     {
         if (canBeHit <= DateTime.Now)
         {
+            hit = true;
             health -= damage;
 
             if(Health <= 0)
             {
-                KillPlayer();
+                //KillPlayer();
+                dead = true;
             }
             Reset();
         }
