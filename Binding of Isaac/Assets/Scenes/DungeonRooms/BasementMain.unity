@@ -799,11 +799,11 @@ MonoBehaviour:
   - tag: Player
     prefab: {fileID: 5472861982936202707, guid: 44a512d70c741574793e6580f19d8b60,
       type: 3}
-    poolSize: 3
+    poolSize: 1
   - tag: EnemyBullet
     prefab: {fileID: 3445819813908008423, guid: 7e4a7643800aacd46aa4325c87b8213e,
       type: 3}
-    poolSize: 20
+    poolSize: 10
   - tag: HealthItem
     prefab: {fileID: 855955137036105582, guid: 7cfeba6e1b0bb3c49a45fec43c553806, type: 3}
     poolSize: 5
@@ -826,27 +826,30 @@ MonoBehaviour:
   - tag: RedBoomFly
     prefab: {fileID: 4470594760257380467, guid: a91b17cede31b68438a2481c8086ed82,
       type: 3}
-    poolSize: 25
+    poolSize: 5
   - tag: Horf
     prefab: {fileID: 7904043039812610860, guid: f560d0a68ccd8cd40a1accc8fb036a3b,
       type: 3}
-    poolSize: 25
+    poolSize: 5
   - tag: Charger
     prefab: {fileID: 3841181999051271969, guid: 96a95081911d77848aa4c0c00c097492,
       type: 3}
-    poolSize: 25
+    poolSize: 5
   - tag: DukeOfFlies
     prefab: {fileID: 2658705539717041533, guid: 70dcf138ffcd95a4db5ddc08d49d89b6,
       type: 3}
-    poolSize: 3
+    poolSize: 1
   - tag: DefendEternalFly
     prefab: {fileID: 4485857952320679443, guid: 107766e19de96a14ba7c759569f06d5a,
       type: 3}
-    poolSize: 25
+    poolSize: 15
   - tag: AttackEternalFly
     prefab: {fileID: 1260476322104616744, guid: ee71fff251e1de24cbab76babd02c249,
       type: 3}
-    poolSize: 25
+    poolSize: 15
+  - tag: SpawnEffect
+    prefab: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+    poolSize: 5
 --- !u!4 &551345443
 Transform:
   m_ObjectHideFlags: 0
@@ -3480,6 +3483,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008101354}
   m_CullTransparentMesh: 0
+--- !u!1 &2119459160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5472861982936202707, guid: 44a512d70c741574793e6580f19d8b60,
+    type: 3}
+  m_PrefabInstance: {fileID: 5472861982664537416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2119459161
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119459160}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08f29767972221149a0f07613f311b03, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &5472861982664537416
 PrefabInstance:
   m_ObjectHideFlags: 0

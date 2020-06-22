@@ -38,11 +38,24 @@ public class EternalFly : MonoBehaviour
 
     private Animator anim;
     private bool died = false;
+    private float deathTimer = 0;
 
     private void OnEnable()
     {
         player = FindObjectOfType<PlayerController>();
         anim = GetComponentInChildren<Animator>();
+
+        died = false;
+
+        if (name.Contains("Attack"))
+        {
+            flyState = FlyState.Attack;
+        }
+
+        if (name.Contains("Defend"))
+        {
+            flyState = FlyState.Defend;
+        }
 
         //anim.SetBool("Die", false);
     }
@@ -77,6 +90,27 @@ public class EternalFly : MonoBehaviour
         {
             flyState = FlyState.Attack;
         }
+
+        if (died)
+        {
+            deathTimer += Time.deltaTime;
+        }
+
+        if(deathTimer > 1)
+        {
+            deathTimer = 0;
+            spawner.enemyCounter--;
+            //GameController.instance.enemyKillCounter--;
+
+
+            if (flyType == FlyType.Defend)
+                boss.defendFliesList.Remove(this);
+
+            if (flyType == FlyType.Attack)
+                boss.attackFliesList.Remove(this);
+
+            StartCoroutine(WaitToDie());
+        }
     }
 
     private void Defend(int index)
@@ -107,10 +141,8 @@ public class EternalFly : MonoBehaviour
         if (!died)
         {
             died = true;
-            anim.SetBool("Die", true);
+            anim.SetTrigger("Die");
             spawner.enemyCounter--;
-            //GameController.instance.enemyKillCounter--;
-
 
             if (flyType == FlyType.Defend)
                 boss.defendFliesList.Remove(this);
@@ -118,10 +150,9 @@ public class EternalFly : MonoBehaviour
             if (flyType == FlyType.Attack)
                 boss.attackFliesList.Remove(this);
 
-
-
             StartCoroutine(WaitToDie());
         }
+
     }
 
     public void TakeDamage(float damage)
@@ -130,6 +161,7 @@ public class EternalFly : MonoBehaviour
         if (health <= 0)
         {
             flyState = FlyState.Die;
+
         }
     }
 
@@ -142,8 +174,9 @@ public class EternalFly : MonoBehaviour
 
     private IEnumerator WaitToDie()
     {
-        yield return new WaitForSeconds(0.6f);
-
+        yield return new WaitForSeconds(0.4f);
+        died = false;
+        deathTimer = 0;
         gameObject.SetActive(false);
     }
 }

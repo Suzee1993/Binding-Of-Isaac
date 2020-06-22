@@ -230,7 +230,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 266967063}
+  m_Father: {fileID: 738049012}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &266967061
@@ -274,12 +274,15 @@ MonoBehaviour:
   downDoor: {fileID: 0}
   enemyRoom: 1
   bossRoom: 1
+  itemRoom: 0
   doors: []
   playerInRoom: 0
   locked: 0
   firstEntry: 0
   bossPanel: {fileID: 1765471146}
   bossPanelActivated: 0
+  roomHolder: {fileID: 738049011}
+  enemiesInRoomList: []
 --- !u!4 &266967063
 Transform:
   m_ObjectHideFlags: 0
@@ -291,17 +294,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 238751303}
-  - {fileID: 2049280468}
-  - {fileID: 411937368}
-  - {fileID: 1636902344}
-  - {fileID: 535125280}
-  - {fileID: 462934921}
-  - {fileID: 545067099}
-  - {fileID: 1455371814}
-  - {fileID: 1975845550}
-  - {fileID: 1060085525}
-  - {fileID: 2023861007}
+  - {fileID: 738049012}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -352,6 +345,7 @@ MonoBehaviour:
   playerInBossRoom: 0
   enemyCounter: 0
   enemiesInRoom: 1
+  room: {fileID: 0}
 --- !u!1 &314058134
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +515,7 @@ Transform:
   m_LocalPosition: {x: 0.0027, y: 1.4613, z: 0}
   m_LocalScale: {x: 46.713306, y: 1.9309367, z: 1}
   m_Children: []
-  m_Father: {fileID: 266967063}
+  m_Father: {fileID: 738049012}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &411937369
@@ -656,7 +650,7 @@ Transform:
   m_LocalPosition: {x: 2.23, y: -0.0017, z: 0}
   m_LocalScale: {x: 31.10443, y: 1.9309367, z: 1}
   m_Children: []
-  m_Father: {fileID: 266967063}
+  m_Father: {fileID: 738049012}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &462934922
@@ -791,7 +785,7 @@ Transform:
   m_LocalPosition: {x: -2.24, y: -0.0017, z: 0}
   m_LocalScale: {x: 31.10443, y: 1.9309367, z: 1}
   m_Children: []
-  m_Father: {fileID: 266967063}
+  m_Father: {fileID: 738049012}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &535125281
@@ -1058,6 +1052,47 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &738049011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 738049012}
+  m_Layer: 0
+  m_Name: RoomHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &738049012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738049011}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 238751303}
+  - {fileID: 2049280468}
+  - {fileID: 411937368}
+  - {fileID: 1636902344}
+  - {fileID: 535125280}
+  - {fileID: 462934921}
+  - {fileID: 545067099}
+  - {fileID: 1455371814}
+  - {fileID: 1975845550}
+  - {fileID: 1060085525}
+  - {fileID: 2023861007}
+  m_Father: {fileID: 266967063}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &893536162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,7 +1427,7 @@ Transform:
   m_LocalPosition: {x: 0.0027, y: -1.45, z: 0}
   m_LocalScale: {x: 46.713306, y: 1.9309367, z: 1}
   m_Children: []
-  m_Father: {fileID: 266967063}
+  m_Father: {fileID: 738049012}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1636902345
@@ -1458,7 +1493,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.025617547, y: 0.13035733}
+  m_Offset: {x: 0.025617547, y: 0.12887204}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1469,7 +1504,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.040419675, y: 0.17320758}
+  m_Size: {x: 0.040419675, y: 0.170237}
   m_EdgeRadius: 0
 --- !u!61 &1636902347
 BoxCollider2D:
@@ -1858,7 +1893,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1765471147}
-  m_Father: {fileID: 266967063}
+  m_Father: {fileID: 738049012}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1957,7 +1992,7 @@ Transform:
   - {fileID: 201385951}
   - {fileID: 1906289314}
   - {fileID: 634035385}
-  m_Father: {fileID: 266967063}
+  m_Father: {fileID: 738049012}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2078884774
@@ -2047,7 +2082,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 266967063}
+    m_TransformParent: {fileID: 738049012}
     m_Modifications:
     - target: {fileID: 1461498388683585248, guid: 0007415546fcbcf4cb83221853103300,
         type: 3}
@@ -2153,7 +2188,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 266967063}
+    m_TransformParent: {fileID: 738049012}
     m_Modifications:
     - target: {fileID: 1407640406494298208, guid: 5473bd75f83acce42a26487f4d9c6b95,
         type: 3}
@@ -2254,7 +2289,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 266967063}
+    m_TransformParent: {fileID: 738049012}
     m_Modifications:
     - target: {fileID: 3308015370711007325, guid: 1d7a323c49b803f4199da8bf7a98e871,
         type: 3}
@@ -2360,7 +2395,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 266967063}
+    m_TransformParent: {fileID: 738049012}
     m_Modifications:
     - target: {fileID: 2508328856569015280, guid: 0a6ec0e74dee45d4abea7193e9851b3d,
         type: 3}
@@ -2377,6 +2412,26 @@ PrefabInstance:
         type: 3}
       propertyPath: doorType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786648223086128661, guid: 0a6ec0e74dee45d4abea7193e9851b3d,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.002868086
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786648223086128661, guid: 0a6ec0e74dee45d4abea7193e9851b3d,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786648223086128661, guid: 0a6ec0e74dee45d4abea7193e9851b3d,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4786648223086128661, guid: 0a6ec0e74dee45d4abea7193e9851b3d,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.32426387
       objectReference: {fileID: 0}
     - target: {fileID: 5211938691504286273, guid: 0a6ec0e74dee45d4abea7193e9851b3d,
         type: 3}

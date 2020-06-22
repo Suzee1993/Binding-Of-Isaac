@@ -65,7 +65,11 @@ public class RedBoomFly : Enemy
     protected override void Die()
     {
         StartCoroutine(Explode());
-        spawner.enemyCounter--;
+        if (!dead)
+        {
+            dead = true;
+            spawner.enemyCounter--;
+        }
         //base.Die();
     }
 

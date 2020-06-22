@@ -56,7 +56,7 @@ MonoBehaviour:
   attackRange: 0
   health: 2
   itemNames:
-  - HealthItem
+  - HalfHealthItem
   chanceRate: 40
   coolDownAttack: 0
   coolDownTime: 0

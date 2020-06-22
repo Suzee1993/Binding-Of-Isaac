@@ -42,6 +42,7 @@ public class DukeOfFlies : Enemy
     private float attackFliesTimer = 0;
 
     private bool isSpawning = false;
+    private bool died = false;
 
     protected override void OnEnable()
     {
@@ -91,7 +92,12 @@ public class DukeOfFlies : Enemy
         UpdateHealthBar();
         if (health <= 0)
         {
-            currentState = EnemyState.Die;
+            if (!died)
+            {
+                died = true;
+                currentState = EnemyState.Die;
+            }
+
         }
     }
 

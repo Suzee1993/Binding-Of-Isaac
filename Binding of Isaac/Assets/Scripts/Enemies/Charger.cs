@@ -169,7 +169,11 @@ public class Charger : Enemy
 
     protected override void Die()
     {
-        spawner.enemyCounter--;
+        if (!dead)
+        {
+            dead = true;
+            spawner.enemyCounter--;
+        }
         base.Die();
     }
 

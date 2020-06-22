@@ -61,7 +61,12 @@ public class Horf : Enemy
 
     protected override void Die()
     {
-        spawner.enemyCounter--;
+        if (!dead)
+        {
+            dead = true;
+            spawner.enemyCounter--;
+        }
+
         anim.SetBool("Die", true);
         StartCoroutine(WaitToDie());
     }

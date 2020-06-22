@@ -311,7 +311,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("Dead!");
-        //SceneManager.LoadScene("EndScene");
+        //SceneManager.LoadScene("EndGame");
     }
 
     IEnumerator ResetHit()

@@ -29,10 +29,13 @@ public class InventorySlot : MonoBehaviour
         inventory = FindObjectOfType<Inventory>();
         spriteImage.enabled = true;
 
-        //Color temp = spriteImage.color;
-        //temp.a = 0f;
+        if(spriteImage.sprite == null)
+        {
+            Color temp = spriteImage.color;
+            temp.a = 0f;
 
-        //spriteImage.color = temp;
+            spriteImage.color = temp;
+        }
     }
 
     public void ExecuteItem()//PlayerController player)

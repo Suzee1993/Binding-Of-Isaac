@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class ItemSpawner : MonoBehaviour
 {
@@ -13,7 +14,11 @@ public class ItemSpawner : MonoBehaviour
 
     public List<Items> itemNames = new List<Items>();
 
+    public Room room;
+
     private float totalWeight;
+    private bool hasSpawned = false;
+    private string itemName;
 
     private void Awake()
     {
@@ -27,13 +32,22 @@ public class ItemSpawner : MonoBehaviour
 
     private void Start()
     {
-        string itemName = SelectItem();
-        StartCoroutine(Wait(itemName));
+        itemName = SelectItem();
+
+    }
+
+    private void Update()
+    {
+        if(room.playerInRoom && !hasSpawned)
+        {
+            hasSpawned = true;
+            StartCoroutine(Wait(itemName));
+        }
     }
 
     IEnumerator Wait(string itemName)
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(.1f);
         SpawnItem(itemName);
     }
 

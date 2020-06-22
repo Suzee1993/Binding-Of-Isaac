@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     protected bool chooseDir = false;
     protected Vector3 randomDir;
-    //private bool dead = false;
+    protected bool dead = false;
 
     public bool coolDownAttack = false;
     public float coolDownTime;

@@ -22,6 +22,7 @@ public class Room : MonoBehaviour
 
     public bool enemyRoom;
     public bool bossRoom;
+    public bool itemRoom;
 
     public List<Door> doors = new List<Door>();
 
@@ -31,9 +32,13 @@ public class Room : MonoBehaviour
 
     private bool updatedDoors = false;
     private Spawner spawner;
+    private ItemSpawner itemSpawner;
     //public int GCKillCounter;
     public GameObject bossPanel;
     public bool bossPanelActivated = false;
+    public GameObject roomHolder;
+
+    public List<GameObject> enemiesInRoomList = new List<GameObject>();
 
     void Start()
     {
@@ -80,7 +85,18 @@ public class Room : MonoBehaviour
         if (enemyRoom)
         {
             spawner = GetComponent<Spawner>();
+            spawner.room = this;
         }
+        if (!playerInRoom)
+        {
+            StartCoroutine(TurnOffRoomHolder());
+        }
+        if (itemRoom)
+        {
+            itemSpawner = GetComponent<ItemSpawner>();
+            itemSpawner.room = this;
+        }
+
     }
 
     private void Update()
@@ -227,6 +243,7 @@ public class Room : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            roomHolder.SetActive(true);
             StartCoroutine(Wait());
         }        
     }
@@ -242,6 +259,8 @@ public class Room : MonoBehaviour
 
             playerInRoom = false;
             locked = false;
+
+            roomHolder.SetActive(false);
         }
     }
 
@@ -252,6 +271,27 @@ public class Room : MonoBehaviour
         doorchild.GetComponent<SpriteRenderer>().enabled = false;
         door.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
         door.closedDoor = true;
+    }
+
+    IEnumerator TurnOffRoomHolder()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
+        //if (enemyRoom)
+        //{
+        //    foreach (GameObject e in enemiesInRoomList)
+        //    {
+        //        //e.SetActive(false);
+        //        e.gameObject.SetActive(false);
+        //    }
+        //}
+        roomHolder.SetActive(false);
+    }
+
+    IEnumerator TurnOffEnemies()
+    {
+        yield return new WaitForSecondsRealtime(.1f);
+
     }
 
     IEnumerator Wait()

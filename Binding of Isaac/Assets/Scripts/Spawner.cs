@@ -19,11 +19,12 @@ public class Spawner : MonoBehaviour
     public int enemyCounter = 0;
     public bool enemiesInRoom = true;
 
-    // Start is called before the first frame update
+    public Room room;
+
+    private bool hasSpawned = false;
+
     void Start()
     {
-        StartCoroutine(Wait());
-
         if (bossRoom)
         {
             enemyCounter = 1;
@@ -32,6 +33,13 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
+        if (room.playerInRoom && !hasSpawned)
+        {
+            hasSpawned = true;
+
+            StartCoroutine(Wait());
+        }
+
         if (bossRoom)
         {
             if(enemyCounter <= 0)
@@ -43,26 +51,33 @@ public class Spawner : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.3f);
         if (!bossRoom)
         {
             int amountToSpawn = Random.Range(spawnMin, spawnMax);
 
             for (int i = 0; i < amountToSpawn; i++)
             {
+
                 GameObject enemy = PoolManager.Instance.SpawnFromPool(enemyName) as GameObject;
 
-                if(enemy.name.Contains("Charger"))
+                if (enemy.name.Contains("Charger"))
                 {
-                    enemy.GetComponent<Charger>().spawner = this;
+                    Charger charger = enemy.GetComponent<Charger>();
+                    charger.spawner = this;
+                    room.enemiesInRoomList.Add(this.gameObject);
                 }
-                else if(enemy.name.Contains("Horf"))
+                else if (enemy.name.Contains("Horf"))
                 {
-                    enemy.GetComponent<Horf>().spawner = this;
+                    Horf horf = enemy.GetComponent<Horf>();
+                    horf.spawner = this;
+                    room.enemiesInRoomList.Add(this.gameObject);
                 }
-                else if(enemy.name.Contains("RedBoomFly"))
+                else if (enemy.name.Contains("RedBoomFly"))
                 {
-                    enemy.GetComponent<RedBoomFly>().spawner = this;
+                    RedBoomFly redBoomFly = enemy.GetComponent<RedBoomFly>();
+                    redBoomFly.spawner = this;
+                    room.enemiesInRoomList.Add(this.gameObject);
                 }
 
 
@@ -70,9 +85,12 @@ public class Spawner : MonoBehaviour
                 Transform pos = spawnPoints[index];
 
                 enemy.transform.position = pos.position;
+                enemy.SetActive(false);
 
                 enemyCounter++;
-                //GameController.instance.enemyKillCounter++;
+
+                if(!bossRoom)
+                    StartCoroutine(SpawnParticle(pos, enemy));
 
                 spawnPoints.Remove(pos);
             }
@@ -84,13 +102,21 @@ public class Spawner : MonoBehaviour
 
             enemy.GetComponent<DukeOfFlies>().spawner = this;
         }
+    }
 
+    IEnumerator SpawnParticle(Transform pos, GameObject enemy)
+    {
+        GameObject spawnEffect = PoolManager.Instance.SpawnFromPool("SpawnEffect") as GameObject;
+        spawnEffect.transform.position = pos.position;
+        yield return new WaitForSeconds(.6f);
+        spawnEffect.SetActive(false);
+        enemy.SetActive(true);
     }
 
     IEnumerator LoadLastScene()
     {
         yield return new WaitForSeconds(2f);
 
-        SceneManager.LoadScene("EndScene");
+        SceneManager.LoadScene("EndGame");
     }
 }
