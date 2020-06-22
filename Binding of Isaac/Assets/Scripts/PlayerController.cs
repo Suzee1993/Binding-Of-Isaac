@@ -21,6 +21,21 @@ public class PlayerController : MonoBehaviour
     public GameObject headSpriteRenderer;
     public GameObject bodySpriteRenderer;
 
+    public enum AnimationState
+    {
+        WalkUp,
+        WalkDown,
+        WalkLeft,
+        WalkRight,
+        ShootUp,
+        ShootDown,
+        ShootLeft,
+        ShootRight,
+        Idle
+    };
+
+    private AnimationState currentAnimationState = AnimationState.Idle;
+
     private LoadScreen ls;
     private Animator animHead;
     private Animator animBody;
@@ -52,34 +67,66 @@ public class PlayerController : MonoBehaviour
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
-            #region Head & Body Walk Animations
-            if (horizontal > 0)
+            switch (currentAnimationState)
             {
-                srHead.flipX = false;
-                animHead.SetTrigger("WalkRight");
-            }
-            if (horizontal < 0)
-            {
-                srHead.flipX = true;
-                animHead.SetTrigger("WalkLeft");
+                case (AnimationState.WalkUp):
+                    WalkUp();
+                    break;
+
+                case (AnimationState.WalkDown):
+                    WalkDown();
+                    break;
+
+                case (AnimationState.WalkLeft):
+                    WalkLeft();
+                    break;
+
+                case (AnimationState.WalkRight):
+                    WalkRight();
+                    break;
+
+                case (AnimationState.ShootUp):
+                    ShootUp();
+                    break;
+
+                case (AnimationState.ShootDown):
+                    ShootDown();
+                    break;
+
+                case (AnimationState.ShootLeft):
+                    ShootLeft();
+                    break;
+
+                case (AnimationState.ShootRight):
+                    ShootRight();
+                    break;
+
+                case (AnimationState.Idle):
+                    Idle();
+                    break;
             }
 
+
+            #region Head & Body Walk Animations
+            //Up
             if (vertical > 0)
             {
-                animHead.SetTrigger("WalkUp");
+                currentAnimationState = AnimationState.WalkUp;
             }
+            //Down
             if (vertical < 0)
             {
-                animHead.SetTrigger("WalkDown");
-
-                animBody.SetBool("WalkDown", true);
-                //animBody.SetTrigger("WalkDown");
+                currentAnimationState = AnimationState.WalkDown;
             }
-
-            if(horizontal == 0 && vertical == 0)
+            //Left
+            if (horizontal < 0)
             {
-                animBody.SetBool("WalkDown", false);
-                animBody.SetTrigger("BodyIdle");
+                currentAnimationState = AnimationState.WalkLeft;
+            }
+            //Right
+            if (horizontal > 0)
+            {
+                currentAnimationState = AnimationState.WalkRight;
             }
             #endregion
 
@@ -90,29 +137,32 @@ public class PlayerController : MonoBehaviour
             var shootVer = Input.GetAxis("ShootVer");
 
             #region Head Shoot Animations
+            //Up
+            if (shootVer > 0)
+            {
+                currentAnimationState = AnimationState.ShootUp;
+            }
+            //Down
+            if (shootVer < 0)
+            {
+                currentAnimationState = AnimationState.ShootDown;
+            }
+            //Left
+            if (shootHor < 0)
+            {
+                currentAnimationState = AnimationState.ShootLeft;
+            }
+            //Right
             if (shootHor > 0)
             {
-                srHead.flipX = false;
-                animHead.SetTrigger("ShootRight");
-            }
-            if(shootHor < 0)
-            {
-                srHead.flipX = true;
-                animHead.SetTrigger("ShootLeft");
+                currentAnimationState = AnimationState.ShootRight;
             }
 
-            if(shootVer > 0)
-            {
-                animHead.SetTrigger("ShootUp");
-            }
-            if(shootVer < 0)
-            {
-                animHead.SetTrigger("ShootDown");
-            }
 
-            if(shootHor == 0 && shootVer == 0)
+            //Idle
+            if (horizontal == 0 && vertical == 0 && shootHor == 0 && shootVer == 0)
             {
-                animHead.SetTrigger("WalkDown");
+                currentAnimationState = AnimationState.Idle;
             }
             #endregion
 
@@ -128,6 +178,59 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    #region AnimationState Voids
+    private void WalkUp()
+    {
+        animHead.SetTrigger("WalkUp");
+    }
+
+    private void WalkDown()
+    {
+        animHead.SetTrigger("WalkDown");
+    }    
+    
+    private void WalkLeft()
+    {
+        srHead.flipX = true;
+        animHead.SetTrigger("WalkLeft");
+    }    
+    
+    private void WalkRight()
+    {
+        srHead.flipX = false;
+        animHead.SetTrigger("WalkRight");
+    }    
+    
+    private void ShootUp()
+    {
+        animHead.SetTrigger("ShootUp");
+    }    
+    
+    private void ShootDown()
+    {
+        animHead.SetTrigger("ShootDown");
+    }    
+    
+    private void ShootLeft()
+    {
+        srHead.flipX = true;
+        animHead.SetTrigger("ShootLeft");
+    }    
+    
+    private void ShootRight()
+    {
+        srHead.flipX = false;
+        animHead.SetTrigger("ShootRight");
+    }
+
+    private void Idle()
+    {
+        animHead.SetTrigger("WalkDown");
+        //animBody.SetBool("WalkDown", false);
+        animBody.SetTrigger("BodyIdle");
+    }
+    #endregion
 
     void Shoot(float x, float y)
     {

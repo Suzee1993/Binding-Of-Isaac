@@ -433,31 +433,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 309553158}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &344321338 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6159257144797896106, guid: 44a512d70c741574793e6580f19d8b60,
-    type: 3}
-  m_PrefabInstance: {fileID: 5472861982664537416}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &344321341
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344321338}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff1449c0237ab8f4db923cdc31e38cb5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &351191387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,31 +1307,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 772788338, guid: 5a8de643285fabe49bd360f70d4cb093, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5a8de643285fabe49bd360f70d4cb093, type: 3}
---- !u!1 &898444445 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 89590036196957801, guid: 44a512d70c741574793e6580f19d8b60,
-    type: 3}
-  m_PrefabInstance: {fileID: 5472861982664537416}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &898444448
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898444445}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 22817131dcf4bcf46808aeaaab82e736, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1071155778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3537,25 +3487,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2631765901574271119, guid: 44a512d70c741574793e6580f19d8b60,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 826611389
-      objectReference: {fileID: 0}
-    - target: {fileID: 2631765901574271119, guid: 44a512d70c741574793e6580f19d8b60,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 5358050417928522864, guid: 44a512d70c741574793e6580f19d8b60,
         type: 3}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358050417928522864, guid: 44a512d70c741574793e6580f19d8b60,
-        type: 3}
-      propertyPath: m_FlipX
-      value: 0
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5472861982936202707, guid: 44a512d70c741574793e6580f19d8b60,
         type: 3}
