@@ -38,9 +38,9 @@ public class Inventory : MonoBehaviour
                 Image image = slot.spriteImage.GetComponent<Image>();
                 //image.enabled = true;
 
-                Color temp = image.color;
-                temp.a = 1f;
-                image.color = temp;
+                //Color temp = Color.white;
+                //temp.a = 255f;
+                image.color = Color.white;
 
                 image.sprite = sprite;
                 slot.titleText.text = title;
