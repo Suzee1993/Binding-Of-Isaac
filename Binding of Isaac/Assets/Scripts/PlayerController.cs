@@ -45,9 +45,11 @@ public class PlayerController : MonoBehaviour
     private Animator animBody;
     private SpriteRenderer sr;
     private SpriteRenderer srHead;
+    private SpriteRenderer srBody;
     private Rigidbody2D rb;
     private string stringName = "Bullet";
     private bool canMove =  true;
+    private bool dead;
 
     void Start()
     {
@@ -58,14 +60,16 @@ public class PlayerController : MonoBehaviour
         animHead = headSpriteRenderer.GetComponent<Animator>();
         animBody = bodySpriteRenderer.GetComponent<Animator>();
         srHead = headSpriteRenderer.GetComponent<SpriteRenderer>();
-
-        //anim = GetComponent<Animator>();
+        srBody = bodySpriteRenderer.GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
+        dead = GameController.dead;
+
         if (!ls.loadScreenActive && canMove)
         {
+            ResetTriggers();
             damage = GameController.Damage;
             fireDelay = GameController.FireDelay;
             speed = GameController.Speed;
@@ -136,22 +140,22 @@ public class PlayerController : MonoBehaviour
 
 
             //Up
-            if (vertical > 0 && currentAnimationState != AnimationState.Hurt || vertical > 0 && currentAnimationState != AnimationState.Dead)
+            if (vertical > 0 && currentAnimationState != AnimationState.Hurt || vertical > 0 && currentAnimationState != AnimationState.Dead && canMove)
             {
                 currentAnimationState = AnimationState.WalkUp;
             }
             //Down
-            if (vertical < 0 && currentAnimationState != AnimationState.Hurt || vertical < 0 && currentAnimationState != AnimationState.Dead)
+            if (vertical < 0 && currentAnimationState != AnimationState.Hurt || vertical < 0 && currentAnimationState != AnimationState.Dead && canMove)
             {
                 currentAnimationState = AnimationState.WalkDown;
             }
             //Left
-            if (horizontal < 0 && currentAnimationState != AnimationState.Hurt || horizontal < 0 && currentAnimationState != AnimationState.Dead)
+            if (horizontal < 0 && currentAnimationState != AnimationState.Hurt || horizontal < 0 && currentAnimationState != AnimationState.Dead && canMove)
             {
                 currentAnimationState = AnimationState.WalkLeft;
             }
             //Right
-            if (horizontal > 0 && currentAnimationState != AnimationState.Hurt || horizontal > 0 && currentAnimationState != AnimationState.Dead)
+            if (horizontal > 0 && currentAnimationState != AnimationState.Hurt || horizontal > 0 && currentAnimationState != AnimationState.Dead && canMove)
             {
                 currentAnimationState = AnimationState.WalkRight;
             }
@@ -199,47 +203,66 @@ public class PlayerController : MonoBehaviour
                 lastFire = Time.time;
             }
 
-            //if(GameController.Health <= 0)
-            //{
-            //    StartCoroutine(LoadLastScene());
-            //}
-
             if (GameController.hit)
             {
                 currentAnimationState = AnimationState.Hurt;
                 StartCoroutine(ResetHit());
             }
 
-            if (GameController.dead)
+            if (dead)
             {
                 currentAnimationState = AnimationState.Dead;
-                canMove = false;
-                StartCoroutine(LoadLastScene());
             }
         }
+
+        if (dead)
+        {
+            Dead();
+        }
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    GameController.TakeDamage(100);
+        //}
     }
 
     #region AnimationState Voids
     private void WalkUp()
     {
+        ResetTriggers();
+
         animHead.SetTrigger("WalkUp");
+
+        animBody.SetTrigger("WalkUp");
     }
 
     private void WalkDown()
     {
+        ResetTriggers();
+
         animHead.SetTrigger("WalkDown");
+
+        animBody.SetTrigger("WalkDown");
     }    
     
     private void WalkLeft()
     {
+        ResetTriggers();
+
         srHead.flipX = true;
         animHead.SetTrigger("WalkLeft");
+        srBody.flipX = true;
+        animBody.SetTrigger("WalkLeft");
     }    
     
     private void WalkRight()
     {
+        ResetTriggers();
+
         srHead.flipX = false;
         animHead.SetTrigger("WalkRight");
+        srBody.flipX = false;
+        animBody.SetTrigger("WalkRight");
     }    
     
     private void ShootUp()
@@ -273,15 +296,20 @@ public class PlayerController : MonoBehaviour
 
     private void Dead()
     {
-        sr.sprite = deadSprite;
+        canMove = false;
         animHead.gameObject.SetActive(false);
         animBody.gameObject.SetActive(false);
+
+        sr.sprite = deadSprite;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        StartCoroutine(LoadLastScene());
     }
 
     private void Idle()
     {
         animHead.SetTrigger("WalkDown");
-        //animBody.SetBool("WalkDown", false);
+        ResetTriggers();
         animBody.SetTrigger("BodyIdle");
     }
     #endregion
@@ -311,7 +339,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("Dead!");
-        //SceneManager.LoadScene("EndGame");
+        SceneManager.LoadScene("EndGame");
     }
 
     IEnumerator ResetHit()
@@ -322,6 +350,14 @@ public class PlayerController : MonoBehaviour
         sr.sprite = null;
         animHead.gameObject.SetActive(true);
         animBody.gameObject.SetActive(true);
+    }
+
+    void ResetTriggers()
+    {
+        animBody.ResetTrigger("WalkUp");
+        animBody.ResetTrigger("WalkDown");
+        animBody.ResetTrigger("WalkLeft");
+        animBody.ResetTrigger("WalkRight");
     }
 
     #region Timer

@@ -9,4 +9,10 @@ public class SceneSelector : MonoBehaviour
     {
         SceneManager.LoadScene("BasementMain");
     }
+
+    public void Quit()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
 }

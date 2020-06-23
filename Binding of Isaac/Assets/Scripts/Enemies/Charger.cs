@@ -38,12 +38,38 @@ public class Charger : Enemy
 
     public Spawner spawner;
 
+    private Animator anim;
+    private SpriteRenderer sr;
+
+    private enum AnimationState
+    {
+        WanderUp,
+        WanderDown,
+        WanderLeft,
+        WanderRight,
+        AttackUp,
+        AttackDown,
+        AttackLeft,
+        AttackRight,
+        Null
+    };
+
+    private AnimationState currentAnimationState = AnimationState.Null;
+
     //Move randomly at the start
     protected override void OnEnable()
     {
+        movementState = MovementState.NULL;
+
         base.OnEnable();
 
+        anim = GetComponentInChildren<Animator>();
+        sr = GetComponentInChildren<SpriteRenderer>();
+
         var dir = Random.Range(0, 360);
+
+        CheckDir(dir);
+
         randomDir = new Vector3(0, 0, dir);
         Quaternion rot = Quaternion.Euler(randomDir);
         transform.localRotation = Quaternion.Lerp(transform.rotation, rot, 1);
@@ -57,6 +83,45 @@ public class Charger : Enemy
         if(currentState == EnemyState.Follow)
         {
             currentState = EnemyState.Wander;
+        }
+
+        switch (currentAnimationState)
+        {
+            case (AnimationState.WanderUp):
+                WanderUp();
+                break;
+
+            case (AnimationState.WanderDown):
+                WanderDown();
+                break;
+
+            case (AnimationState.WanderLeft):
+                WanderLeft();
+                break;
+
+            case (AnimationState.WanderRight):
+                WanderRight();
+                break;
+
+            case (AnimationState.AttackUp):
+                AttackUp();
+                break;
+
+            case (AnimationState.AttackDown):
+                AttackDown();
+                break;
+
+            case (AnimationState.AttackLeft):
+                AttackLeft();
+                break;
+
+            case (AnimationState.AttackRight):
+                AttackRight();
+                break;
+
+            case (AnimationState.Null):
+                Idle();
+                break;
         }
     }
 
@@ -87,6 +152,7 @@ public class Charger : Enemy
             if(hitR)
             {
                 movementState = MovementState.RL;
+                currentAnimationState = AnimationState.AttackRight;
                 checkMove = false;
                 targetPos = hitR.point;
                 return true;
@@ -94,6 +160,7 @@ public class Charger : Enemy
             if (hitL)
             {
                 movementState = MovementState.RL;
+                currentAnimationState = AnimationState.AttackLeft;
                 checkMove = false;
                 targetPos = hitL.point;
                 return true;
@@ -101,6 +168,7 @@ public class Charger : Enemy
             if (hitU)
             {
                 movementState = MovementState.UD;
+                currentAnimationState = AnimationState.AttackUp;
                 checkMove = false;
                 targetPos = hitU.point;
                 return true;
@@ -108,6 +176,7 @@ public class Charger : Enemy
             if (hitD)
             {
                 movementState = MovementState.UD;
+                currentAnimationState = AnimationState.AttackDown;
                 checkMove = false;
                 targetPos = hitD.point;
                 return true;
@@ -177,6 +246,72 @@ public class Charger : Enemy
         base.Die();
     }
 
+    protected override IEnumerator ChooseDirection()
+    {
+        chooseDir = true;
+        yield return new WaitForSeconds(Random.Range(2f, 5f));
+        int dir = Random.Range(0, 360);
+
+        CheckDir(dir);
+
+        randomDir = new Vector3(0, 0, dir);
+        Quaternion nextRotation = Quaternion.Euler(randomDir);
+        transform.localRotation = Quaternion.Lerp(transform.rotation, nextRotation, Random.Range(.5f, 3f));
+        chooseDir = false;
+    }
+
+    #region Animation State Voids
+    private void WanderUp()
+    {
+        anim.SetTrigger("WanderUp");
+    }
+
+    private void WanderDown()
+    {
+        anim.SetTrigger("WanderDown");
+    }
+
+    private void WanderLeft()
+    {
+        sr.flipX = true;
+        anim.SetTrigger("WanderLeft");
+    }
+
+    private void WanderRight()
+    {
+        sr.flipX = false;
+        anim.SetTrigger("WanderRight");
+    }
+
+    private void AttackUp()
+    {
+        anim.SetTrigger("AttackUp");
+    }
+
+    private void AttackDown()
+    {
+        anim.SetTrigger("AttackDown");
+    }
+
+    private void AttackLeft()
+    {
+        sr.flipX = true;
+        anim.SetTrigger("AttackLeft");
+    }
+
+    private void AttackRight()
+    {
+        sr.flipX = false;
+        anim.SetTrigger("AttackRight");
+    }
+
+    private void Idle()
+    {
+        anim.SetTrigger("NoInput");
+    }
+
+    #endregion
+
     IEnumerator DashReset()
     {        
         yield return new WaitForSeconds(1f);
@@ -185,5 +320,33 @@ public class Charger : Enemy
 
         canDash = true;
         checkMove = true;
+    }
+
+    void CheckDir(int dir)
+    {
+        if (dir <= 45 || dir >= 316)
+        {
+            //up
+            Debug.Log("Up" + dir);
+            currentAnimationState = AnimationState.WanderUp;
+        }
+        if (dir >= 46 && dir <= 135)
+        {
+            //right
+            Debug.Log("Right" + dir);
+            currentAnimationState = AnimationState.WanderRight;
+        }
+        if (dir >= 136 && dir <= 225)
+        {
+            //down
+            Debug.Log("Down" + dir);
+            currentAnimationState = AnimationState.WanderDown;
+        }
+        if (dir >= 226 && dir <= 315)
+        {
+            //left
+            Debug.Log("Left" + dir);
+            currentAnimationState = AnimationState.WanderLeft;
+        }
     }
 }
