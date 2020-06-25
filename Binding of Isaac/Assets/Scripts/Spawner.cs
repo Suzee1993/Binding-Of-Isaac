@@ -42,10 +42,9 @@ public class Spawner : MonoBehaviour
 
         if (bossRoom)
         {
-            if(enemyCounter <= 0)
-            {
-                StartCoroutine(LoadLastScene());
-            }
+            StartCoroutine(CheckForLastEnemy());
+
+
         }
     }
 
@@ -113,10 +112,20 @@ public class Spawner : MonoBehaviour
         enemy.SetActive(true);
     }
 
+    IEnumerator CheckForLastEnemy()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+
+        if (enemyCounter <= 0)
+        {
+            StartCoroutine(LoadLastScene());
+        }
+    }
+
     IEnumerator LoadLastScene()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
-        SceneManager.LoadScene("EndGame");
+        SceneManager.LoadScene("EndGameWon");
     }
 }

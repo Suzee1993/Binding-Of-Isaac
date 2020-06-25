@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     private static float maxHealth;
     private static float speed = 2.2f;
     private static float fireDelay = 0.5f;
-    private static float damage = 1f;
+    private static float damage = 10f;
 
     public static float Health { get => health; set => health = value; }
     public static float MaxHealth { get => maxHealth; set => maxHealth = value; }
@@ -52,7 +52,6 @@ public class GameController : MonoBehaviour
 
             if(Health <= 0)
             {
-                //KillPlayer();
                 dead = true;
             }
             Reset();
@@ -125,11 +124,6 @@ public class GameController : MonoBehaviour
     }
 
     #endregion
-
-    private static void KillPlayer()
-    {
-        //animation
-    }
 
     #region Timer
     //public static IEnumerator Timer(float prevPlayerStat, float prevPlayerStat2, float time, Item.ItemTypes itemType)

@@ -17,6 +17,7 @@ public class DukeOfFlies : Enemy
     public int minAmountFlies;
     public int maxAmountFlies;
     public List<Transform> defendPoints = new List<Transform>();
+    public GameObject spriteHolder;
 
     private EternalFly efScript;
     private float fillValue;
@@ -45,6 +46,8 @@ public class DukeOfFlies : Enemy
     private bool died = false;
     private Animator anim;
 
+    private Rigidbody2D rb;
+
     private enum AnimationState
     {
         Idle,
@@ -66,46 +69,49 @@ public class DukeOfFlies : Enemy
         randomBAFTime = Random.Range(randomBAFTimeMin, randomBAFTimeMax);
         randomAFTime = Random.Range(randomAFTimeMin, randomAFTimeMax);
 
-        //StartCoroutine(Wait());
+        rb = GetComponent<Rigidbody2D>();
     }
 
     protected override void Update()
     {
         //base.Update();
-
-        switch (currentState)
+        if (!dead)
         {
-            case (EnemyState.Wander):
-                Wander();
-                break;
+            switch (currentState)
+            {
+                case (EnemyState.Wander):
+                    Wander();
+                    break;
 
-            case (EnemyState.Attack):
-                Attack();
-                break;
+                case (EnemyState.Attack):
+                    Attack();
+                    break;
 
-            case (EnemyState.Die):
-                Die();
-                break;
-        };
+                case (EnemyState.Die):
+                    Die();
+                    break;
+            };
 
-        switch (currentAnimationState)
-        {
-            case (AnimationState.Idle):
-                AnimationIdle();
-                break;
+            switch (currentAnimationState)
+            {
+                case (AnimationState.Idle):
+                    AnimationIdle();
+                    break;
 
-            case (AnimationState.Attack):
-                AnimationAttack();
-                break;
+                case (AnimationState.Attack):
+                    AnimationAttack();
+                    break;
+            }
+
+            if (spawner.playerInBossRoom)
+            {
+                currentState = EnemyState.Attack;
+
+                StartCoroutine(ActivateHealthBar());
+                //canvas.enabled = true;
+            }
         }
 
-        if (spawner.playerInBossRoom)
-        {
-            currentState = EnemyState.Attack;
-
-            StartCoroutine(ActivateHealthBar());
-            //canvas.enabled = true;
-        }
     }
 
     protected override void TakeDamage(float damage)
@@ -199,10 +205,32 @@ public class DukeOfFlies : Enemy
 
     protected override void Die()
     {
-        efScript.bossIsAlive = false;
-        spawner.enemyCounter--;
-        //GameController.instance.enemyKillCounter--;
-        base.Die();
+        if (!dead)
+        {
+            dead = true;
+            foreach (EternalFly e in attackFliesList)
+            {
+                e.bossIsAlive = false;
+            }
+            foreach (EternalFly e in defendFliesList)
+            {
+                e.bossIsAlive = false;
+            }
+
+            rb.velocity = Vector3.zero;
+
+            StartCoroutine(LastAttack());
+
+            spawner.enemyCounter--;
+
+            GameObject explosion = PoolManager.Instance.SpawnFromPool("SpawnEffect") as GameObject;
+            explosion.transform.position = transform.position;
+            explosion.transform.localScale = new Vector3(.3f, .3f, 0);
+
+            spriteHolder.SetActive(false);
+
+            StartCoroutine(DeathScene(explosion));
+        }
     }
 
     void SpawnDefendFlies()
@@ -328,5 +356,30 @@ public class DukeOfFlies : Enemy
     void AnimationAttack()
     {
         anim.SetTrigger("Attack");
+    }
+
+
+    IEnumerator LastAttack()
+    {
+        int amount = Random.Range(minAmountFlies, maxAmountFlies);
+
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject eternalFly = PoolManager.Instance.SpawnFromPool("AttackEternalFly") as GameObject;
+
+            FlyInfo(eternalFly);
+
+            efScript.speed = 0.6f;
+            spawner.enemyCounter++;
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    IEnumerator DeathScene(GameObject explosion)
+    {
+        yield return new WaitForSecondsRealtime(1.2f);
+        explosion.SetActive(false);
+        spriteHolder.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
