@@ -213,7 +213,7 @@ public class Charger : Enemy
 
             if (movementState == MovementState.RL)
             {
-                rb.velocity = new Vector2(direction.x, 0) * chargeSpeed;
+                rb.velocity = new Vector2(direction.x, 0).normalized * chargeSpeed;
                 Debug.Log("Dash LR");
 
                 if (canDash)
@@ -224,7 +224,7 @@ public class Charger : Enemy
 
             if (movementState == MovementState.UD)
             {
-                rb.velocity = new Vector2(0, direction.y) * chargeSpeed;
+                rb.velocity = new Vector2(0, direction.y).normalized * chargeSpeed;
                 Debug.Log("Dash UD");
 
                 if (canDash)

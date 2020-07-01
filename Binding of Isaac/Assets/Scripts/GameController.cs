@@ -52,7 +52,6 @@ public class GameController : MonoBehaviour
 
             if(Health <= 0)
             {
-                //KillPlayer();
                 dead = true;
             }
             Reset();
@@ -125,11 +124,6 @@ public class GameController : MonoBehaviour
     }
 
     #endregion
-
-    private static void KillPlayer()
-    {
-        //animation
-    }
 
     #region Timer
     //public static IEnumerator Timer(float prevPlayerStat, float prevPlayerStat2, float time, Item.ItemTypes itemType)
