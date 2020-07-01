@@ -23,6 +23,8 @@ public class RedBoomFly : Enemy
     {
         base.OnEnable();
 
+        health = 1;
+
         var dir = Random.Range(0, directions.Length);
         var direc = directions[dir];
         randomDir = new Vector3(0, 0, direc);
@@ -96,6 +98,8 @@ public class RedBoomFly : Enemy
         }
 
         DropItem();
+        health = 1;
+        currentState = EnemyState.Wander;
         gameObject.SetActive(false);
         yield return new WaitForSeconds(1f);
     }

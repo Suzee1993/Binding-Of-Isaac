@@ -59,6 +59,8 @@ public class Charger : Enemy
     //Move randomly at the start
     protected override void OnEnable()
     {
+        health = 2;
+
         movementState = MovementState.NULL;
 
         base.OnEnable();
@@ -243,6 +245,8 @@ public class Charger : Enemy
             dead = true;
             spawner.enemyCounter--;
         }
+        health = 2;
+        currentState = EnemyState.Wander;
         base.Die();
     }
 

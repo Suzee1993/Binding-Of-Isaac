@@ -21,6 +21,9 @@ public class Horf : Enemy
     protected override void OnEnable()
     {
         base.OnEnable();
+
+        health = 2;
+
         anim = GetComponentInChildren<Animator>();
 
         anim.SetBool("Die", false);
@@ -74,6 +77,8 @@ public class Horf : Enemy
     IEnumerator WaitToDie()
     {
         yield return new WaitForSeconds(.5f);
+        health = 2;
+        currentState = EnemyState.Wander;
         base.Die();
     }
 }

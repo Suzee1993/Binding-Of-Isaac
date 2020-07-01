@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -161,7 +162,32 @@ public class PlayerController : MonoBehaviour
             }
             #endregion
 
-            rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);        
+            Vector3 pos = new Vector3(horizontal * speed, vertical * speed, 0);
+
+            if(horizontal > 0)
+            {
+                pos.x = Mathf.Clamp(pos.x, 0, speed);
+            }
+            else if(horizontal < 0)
+            {
+                pos.x = Mathf.Clamp(pos.x, -speed, 0);
+            }
+
+            if(vertical > 0)
+            {
+                pos.y = Mathf.Clamp(pos.y, 0, speed);
+            }
+            else if(vertical < 0)
+            {
+                pos.y = Mathf.Clamp(pos.y, -speed, 0);
+            }
+
+            var moveDir = Vector3.ClampMagnitude(pos, speed);
+
+            rb.velocity = moveDir;
+
+
+            //rb.velocity = new Vector3(horizontal * speed, vertical * speed, 0);   
 
             //Shooting
             var shootHor = Input.GetAxis("ShootHor");
